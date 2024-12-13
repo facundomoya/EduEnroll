@@ -1,9 +1,8 @@
 package models;
 
-public class Student extends Person {
+public class Student extends User {
     private int studentID;
     private String status;
-    private String email;
     private String degree;
 
     public int getStudentID() {
@@ -21,7 +20,7 @@ public class Student extends Person {
     public void setStatus(String status) {
         this.status = status;
     }
-
+   
     public String getDegree() {
         return degree;
     }
@@ -29,22 +28,14 @@ public class Student extends Person {
     public void setDegree(String degree) {
         this.degree = degree;
     }
-    
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Student(int studentID, String status, String degree, String name, String lastname, int age, String nationality) {
-        super(name, lastname, age, nationality);
+    public Student(int studentID, String status, String degree, String name, String lastname, int age, String nationality, String email, String user_name, String password) {
+        super(name, lastname, age, nationality, email, user_name, password);
         this.studentID = studentID;
         this.status = status;
         this.degree = degree;
     }
 
-    public Student() {
+        public Student() {
     }    
 }

@@ -1,12 +1,14 @@
 package models;
 
-public abstract class Person {
-
+public class User {
     private String name;
     private String lastname;
     private int age;
     private String nationality;
-
+    private String email;
+    private String user_name;
+    private String password;
+     
     public String getName() {
         return name;
     }
@@ -38,14 +40,41 @@ public abstract class Person {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
-
-    public Person() {
+    
+     public String getUser_name() {
+        return user_name;
     }
 
-    public Person(String name, String lastname, int age, String nationality) {
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+    
+     public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User(String name, String lastname, int age, String nationality, String email, String user_name, String password) {
         this.name = name;
         this.lastname = lastname;
         this.age = age;
         this.nationality = nationality;
+        this.email = email;
+        this.user_name = user_name;
+        this.password = password;
     }
+    
+      public User() {
+    } 
 }
