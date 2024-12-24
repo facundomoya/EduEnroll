@@ -8,6 +8,7 @@ public class User {
     private String email;
     private String user_name;
     private String password;
+    private String user_type;
      
     public String getName() {
         return name;
@@ -65,7 +66,15 @@ public class User {
         this.email = email;
     }
 
-    public User(String name, String lastname, int age, String nationality, String email, String user_name, String password) {
+    public String getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
+    }
+
+    public User(String name, String lastname, int age, String nationality, String email, String user_name, String password, String user_type) {
         this.name = name;
         this.lastname = lastname;
         this.age = age;
@@ -73,8 +82,9 @@ public class User {
         this.email = email;
         this.user_name = user_name;
         this.password = password;
+        this.user_type = user_type;
     }
-    
-      public User() {
-    } 
+
+    public User() {
+    }
 }

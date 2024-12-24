@@ -20,8 +20,8 @@ public class Professor extends User {
         this.professorType = professorType;
     }
 
-    public Professor(int professorID, String professorType, String name, String lastname, int age, String nationality, String email, String user_name, String password) {
-        super(name, lastname, age, nationality, email, user_name, password);
+    public Professor(int professorID, String professorType, String name, String lastname, int age, String nationality, String email, String user_name, String password, String user_type) {
+        super(name, lastname, age, nationality, email, user_name, password, user_type);
         this.professorID = professorID;
         this.professorType = professorType;
     }

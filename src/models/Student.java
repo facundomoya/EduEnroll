@@ -29,13 +29,15 @@ public class Student extends User {
         this.degree = degree;
     }
 
-    public Student(int studentID, String status, String degree, String name, String lastname, int age, String nationality, String email, String user_name, String password) {
-        super(name, lastname, age, nationality, email, user_name, password);
+    public Student(int studentID, String status, String degree, String name, String lastname, int age, String nationality, String email, String user_name, String password, String user_type) {
+        super(name, lastname, age, nationality, email, user_name, password, user_type);
         this.studentID = studentID;
         this.status = status;
         this.degree = degree;
     }
 
-        public Student() {
-    }    
+    public Student() {
+    }
+
+ 
 }
