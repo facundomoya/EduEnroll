@@ -1,7 +1,6 @@
 package models;
 import java.sql.*;
 
-
 public class dbConnection {
     static String url="jdbc:mysql://localhost/eduenroll";
     static String user="root";

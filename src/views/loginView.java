@@ -37,7 +37,7 @@ public class loginView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        loginLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        loginLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         loginLabel1.setText("  WELCOME");
 
         loginLabel2.setText("User:");
@@ -80,13 +80,16 @@ public class loginView extends javax.swing.JFrame {
                                 .addComponent(loginLabel3)
                                 .addGap(25, 25, 25)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(loginLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                             .addComponent(passTextField)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(123, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 121, Short.MAX_VALUE)
+                .addComponent(loginLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

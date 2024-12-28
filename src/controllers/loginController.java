@@ -1,4 +1,5 @@
 package controllers;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static models.dbConnection.isValidUser;
 import views.loginView;
@@ -6,7 +7,8 @@ import views.loginView;
 public class loginController {
     
     static loginView view = new loginView();
-    
+   
+  
     public static void show(){
     view.setVisible(true);
     }
@@ -18,6 +20,10 @@ public class loginController {
         if (isValidUser(user, pass)) {
             // Si es válido, realizar las acciones necesarias, como redirigir a otra vista
             System.out.println("Valid user");
+            menuController.view.setVisible(true);
+            view.setVisible(false);
+            JLabel menuLabel2 = menuController.view.getMenuLabel2();
+            menuLabel2.setText(user);
         } else {
             // Si no es válido, mostrar un mensaje de error
             System.out.println("Invalid user");
