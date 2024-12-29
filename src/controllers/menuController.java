@@ -6,6 +6,11 @@ public class menuController {
     
     public static void exitButton(){
     view.setVisible(false);
+    loginController.view.setVisible(true);
     }
     
+    public static void studentClick(){
+    view.setVisible(false);
+    studentController.view.setVisible(true);
+    }
 }

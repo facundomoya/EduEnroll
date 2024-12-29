@@ -5,10 +5,9 @@ import static models.dbConnection.isValidUser;
 import views.loginView;
 
 public class loginController {
-    
+
     static loginView view = new loginView();
    
-  
     public static void show(){
     view.setVisible(true);
     }
@@ -24,6 +23,8 @@ public class loginController {
             view.setVisible(false);
             JLabel menuLabel2 = menuController.view.getMenuLabel2();
             menuLabel2.setText(user);
+            view.getUserTextField1().setText("");
+            view.getPassTextField().setText("");
         } else {
             // Si no es válido, mostrar un mensaje de error
             System.out.println("Invalid user");

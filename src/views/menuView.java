@@ -41,7 +41,7 @@ public class menuView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        menuLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        menuLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         menuLabel1.setText("MENU");
 
         menuLabel2.setText("jLabel2");
@@ -49,6 +49,11 @@ public class menuView extends javax.swing.JFrame {
         menuLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         menuLabel3.setForeground(new java.awt.Color(0, 0, 255));
         menuLabel3.setText("o Student");
+        menuLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLabel3MouseClicked(evt);
+            }
+        });
 
         menuLabel4.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         menuLabel4.setForeground(new java.awt.Color(0, 0, 255));
@@ -62,7 +67,7 @@ public class menuView extends javax.swing.JFrame {
         menuLabel6.setForeground(new java.awt.Color(0, 0, 255));
         menuLabel6.setText("o Degree");
 
-        exitButton.setText("Exit");
+        exitButton.setText("Logout");
         exitButton.setName("exitButton"); // NOI18N
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,13 +88,13 @@ public class menuView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(179, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(exitButton)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(menuLabel1)
-                        .addGap(89, 89, 89)
-                        .addComponent(menuLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(112, 112, 112)
+                        .addComponent(menuLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exitButton))
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
@@ -100,16 +105,15 @@ public class menuView extends javax.swing.JFrame {
                     .addComponent(menuLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(menuLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(menuLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(menuLabel1)
                     .addComponent(menuLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(menuLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuLabel4)
@@ -121,7 +125,7 @@ public class menuView extends javax.swing.JFrame {
                 .addComponent(menuLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(exitButton)
                 .addGap(19, 19, 19))
         );
@@ -133,6 +137,11 @@ public class menuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuController.exitButton();
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void menuLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLabel3MouseClicked
+        // TODO add your handling code here:
+        menuController.studentClick();
+    }//GEN-LAST:event_menuLabel3MouseClicked
 
     /**
      * @param args the command line arguments
