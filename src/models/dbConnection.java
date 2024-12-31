@@ -33,7 +33,7 @@ public class dbConnection {
             connection = dbConnection.connect();
             
             // SQL para consultar si el usuario y la contraseña coinciden
-            String query = "SELECT * FROM User WHERE user_name = ? AND password = ?";
+            String query = "SELECT * FROM User WHERE BINARY user_name = ? AND BINARY password = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -72,7 +72,7 @@ public class dbConnection {
     model.addColumn("Lastname");
     model.addColumn("Age");
     model.addColumn("Nationality");
-    model.addColumn("Email");
+    model.addColumn("Degree");
     model.addColumn("DNI");
     model.addColumn("Status");
 
@@ -80,7 +80,7 @@ public class dbConnection {
         // Conexión a la base de datos
         con = dbConnection.connect();
         stmt = con.createStatement();
-        String query = "SELECT s.name, s.lastname, s.age, s.nationality, s.email, s.status, s.dni " +
+        String query = "SELECT s.name, s.lastname, s.age, s.nationality, s.degree, s.status, s.dni " +
                        "FROM student s ";
         resultset = stmt.executeQuery(query);
 
@@ -89,12 +89,12 @@ public class dbConnection {
             Student student = new Student(
                 0,
                 resultset.getString("status"),
-                null,
+                resultset.getString("degree"),
                 resultset.getString("name"),
                 resultset.getString("lastname"),
                 resultset.getInt("age"),
                 resultset.getString("nationality"),
-                resultset.getString("email"),
+                null,
                 resultset.getInt("dni")            
             );
 
@@ -107,7 +107,7 @@ public class dbConnection {
             row[1] = student.getLastname();
             row[2] = student.getAge();
             row[3] = student.getNationality();
-            row[4] = student.getEmail();
+            row[4] = student.getDegree();
             row[5] = student.getDni();
             row[6] = student.getStatus();
 
@@ -117,6 +117,11 @@ public class dbConnection {
 
         // Asignar el modelo de datos a la JTable
         studentController.view.getStudentTable().setModel(model);
+        // Cambia el tamaño de la columna degree en la tabla
+        studentController.view.getStudentTable().getColumnModel().getColumn(4).setPreferredWidth(150);
+        studentController.view.getStudentTable().revalidate();
+        studentController.view.getStudentTable().repaint();
+
 
     } catch (SQLException e) {
         e.printStackTrace();

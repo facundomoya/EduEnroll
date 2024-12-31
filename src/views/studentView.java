@@ -34,6 +34,8 @@ public class studentView extends javax.swing.JFrame {
         printButton = new javax.swing.JButton();
         addStudentButton = new javax.swing.JButton();
         editStudentButton = new javax.swing.JButton();
+        searchStudentButton = new javax.swing.JButton();
+        deleteStudentButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,12 +50,15 @@ public class studentView extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Lastname", "Age", "Nacionality", "Email", "DNI", "Status"
+                "Name", "Lastname", "Age", "Nacionality", "Degree", "DNI", "Status"
             }
         ));
         jScrollPane1.setViewportView(studentTable);
+        if (studentTable.getColumnModel().getColumnCount() > 0) {
+            studentTable.getColumnModel().getColumn(4).setPreferredWidth(110);
+        }
 
-        printButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\print-icon.png")); // NOI18N
+        printButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\print-icon.png")); // NOI18N
 
         addStudentButton.setText("Add new student");
         addStudentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +69,10 @@ public class studentView extends javax.swing.JFrame {
 
         editStudentButton.setText("Edit student");
 
+        searchStudentButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\search-icon.png")); // NOI18N
+
+        deleteStudentButton.setText("Delete student");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,33 +82,42 @@ public class studentView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(studentLabel1)
-                        .addGap(224, 224, 224)
-                        .addComponent(printButton))
+                        .addGap(146, 146, 146)
+                        .addComponent(searchStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                             .addComponent(addStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(editStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(editStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(studentLabel1)
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(printButton)
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(searchStudentButton)
+                            .addComponent(printButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(addStudentButton)
                 .addGap(18, 18, 18)
                 .addComponent(editStudentButton)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(deleteStudentButton)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -149,9 +167,11 @@ public class studentView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addStudentButton;
+    private javax.swing.JButton deleteStudentButton;
     private javax.swing.JButton editStudentButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton printButton;
+    private javax.swing.JButton searchStudentButton;
     private javax.swing.JLabel studentLabel1;
     private javax.swing.JTable studentTable;
     // End of variables declaration//GEN-END:variables

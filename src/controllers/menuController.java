@@ -13,7 +13,6 @@ public class menuController {
     public static void studentClick(){
     view.setVisible(false);
     studentController.view.setVisible(true);
-    
     showStudent();
     }
 }
