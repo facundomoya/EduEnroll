@@ -1,8 +1,9 @@
 package controllers;
+import static models.dbConnection.showStudent;
 import views.menuView;
 
 public class menuController {
-    static menuView view = new menuView();
+    public static menuView view = new menuView();
     
     public static void exitButton(){
     view.setVisible(false);
@@ -12,5 +13,7 @@ public class menuController {
     public static void studentClick(){
     view.setVisible(false);
     studentController.view.setVisible(true);
+    
+    showStudent();
     }
 }

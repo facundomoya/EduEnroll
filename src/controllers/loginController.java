@@ -6,7 +6,7 @@ import views.loginView;
 
 public class loginController {
 
-    static loginView view = new loginView();
+    public static loginView view = new loginView();
    
     public static void show(){
     view.setVisible(true);
@@ -17,8 +17,7 @@ public class loginController {
         String pass = view.getPassTextField().getText();
         // Verificar si el usuario y contraseña son correctos
         if (isValidUser(user, pass)) {
-            // Si es válido, realizar las acciones necesarias, como redirigir a otra vista
-            System.out.println("Valid user");
+            // Si es válido, realizar las acciones necesarias, como redirigir a otra vista            
             menuController.view.setVisible(true);
             view.setVisible(false);
             JLabel menuLabel2 = menuController.view.getMenuLabel2();
@@ -27,7 +26,6 @@ public class loginController {
             view.getPassTextField().setText("");
         } else {
             // Si no es válido, mostrar un mensaje de error
-            System.out.println("Invalid user");
             JOptionPane.showMessageDialog(null, "Incorrect username or password", "Alert", JOptionPane.INFORMATION_MESSAGE);
         }
     }

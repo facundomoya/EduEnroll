@@ -1,6 +1,6 @@
 package models;
 
-public class Administrator extends User {
+public class Administrator extends Person {
     private int adminID;
 
     public int getAdminID() {
@@ -11,8 +11,8 @@ public class Administrator extends User {
         this.adminID = adminID;
     }
 
-    public Administrator(int adminID, String name, String lastname, int age, String nationality, String email, String user_name, String password, String user_type) {
-        super(name, lastname, age, nationality, email, user_name, password, user_type);
+    public Administrator(int adminID, String name, String lastname, int age, String nationality, String email, int dni) {
+        super(name, lastname, age, nationality, email, dni);
         this.adminID = adminID;
     }
 
