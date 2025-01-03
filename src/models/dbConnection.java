@@ -2,6 +2,7 @@ package models;
 import controllers.studentController;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class dbConnection {
@@ -87,7 +88,6 @@ public class dbConnection {
         // Recorrer el ResultSet y agregar los datos a las listas
         while (resultset.next()) {
             Student student = new Student(
-                0,
                 resultset.getString("status"),
                 resultset.getString("degree"),
                 resultset.getString("name"),
@@ -136,5 +136,80 @@ public class dbConnection {
         }
     }
 }
+ 
+ public static void checkDNIandEmail(int dni, String email){
+  Connection con = null;
+  PreparedStatement pstmt = null;
+  ResultSet resultset = null;
+  
+  try{
+      
+       con = dbConnection.connect();
+       String query = "SELECT s.dni, s.email FROM student s WHERE s.dni = ? OR s.email = ? ";
+       pstmt = con.prepareStatement(query);
+       
+       pstmt.setInt(1, dni);
+       pstmt.setString(2, email);
+       resultset = pstmt.executeQuery();
+       
+      
+       
+       if(resultset.next()){
+       int db_dni = resultset.getInt("dni");
+       String db_email = resultset.getString("email");
+       
+       if(db_dni == dni && !db_email.equals(email)){
+        JOptionPane.showMessageDialog(null, "Incorrect dni, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
+       }else if(db_email.equals(email) && db_dni != dni){
+        JOptionPane.showMessageDialog(null, "Incorrect email, it already exists ", "Alert", JOptionPane.INFORMATION_MESSAGE);
+       }else if(db_dni == dni && db_email.equals(email) ){
+        JOptionPane.showMessageDialog(null, "Incorrect dni and email, they already exist", "Alert", JOptionPane.INFORMATION_MESSAGE);
+       }
+       }
+  }catch(SQLException e){
+  e.printStackTrace();
+  }
+ }
+ 
+ public static void newStudent(String status, String degree, String name, String lastname, int age, String nationality, String email, int dni){
+  Connection con = null;
+  PreparedStatement pstmt = null;
+  
+  ArrayList<Student> studentList = new ArrayList<>();
+  
+  Student student = new Student(status,degree,name,lastname,age,nationality,email,dni);
+  
+  studentList.add(student);
+  
+  try{
+       con = dbConnection.connect();
+       String query = "INSERT INTO student(status, degree, name, lastname, age, nationality, email, dni, codeDegree) VALUES (?,?,?,?,?,?,?,?, \n" +
+"CASE\n" +
+"        WHEN degree = 'Electrical Engineering' THEN 1\n" +
+"        WHEN degree = 'Civil Engineering' THEN 2\n" +
+"        WHEN degree = 'Mechanical Engineering' THEN 3\n" +
+"        ELSE 0\n" +
+"    END\n" +
+")";
+       pstmt = con.prepareStatement(query);
+ 
+       for(Student s : studentList){
+       pstmt.setString(1, s.getStatus());
+       pstmt.setString(2, s.getDegree()); 
+       pstmt.setString(3, s.getName()); 
+       pstmt.setString(4, s.getLastname()); 
+       pstmt.setInt(5, s.getAge()); 
+       pstmt.setString(6, s.getNationality()); 
+       pstmt.setString(7, s.getEmail()); 
+       pstmt.setInt(8, s.getDni()); 
 
+       pstmt.executeUpdate();
+       
+       }
+       
+       
+  
+  }catch(SQLException e){e.printStackTrace();}
+  showStudent();
+ }
 }

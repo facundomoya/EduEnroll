@@ -4,6 +4,8 @@
  */
 package views;
 
+import controllers.studentController;
+
 /**
  *
  * @author facun
@@ -26,7 +28,7 @@ public class addStudentView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        addStudentDialog = new javax.swing.JDialog();
         addStudentLabel1 = new javax.swing.JLabel();
         addStudentLabel2 = new javax.swing.JLabel();
         addStudentLabel3 = new javax.swing.JLabel();
@@ -44,14 +46,14 @@ public class addStudentView extends javax.swing.JFrame {
         addStudentCancelButton = new javax.swing.JButton();
         addStudentAddButton = new javax.swing.JButton();
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout addStudentDialogLayout = new javax.swing.GroupLayout(addStudentDialog.getContentPane());
+        addStudentDialog.getContentPane().setLayout(addStudentDialogLayout);
+        addStudentDialogLayout.setHorizontalGroup(
+            addStudentDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        addStudentDialogLayout.setVerticalGroup(
+            addStudentDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
@@ -79,8 +81,18 @@ public class addStudentView extends javax.swing.JFrame {
         });
 
         addStudentCancelButton.setText("Cancel");
+        addStudentCancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStudentCancelButtonActionPerformed(evt);
+            }
+        });
 
         addStudentAddButton.setText("Add");
+        addStudentAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStudentAddButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,6 +178,18 @@ public class addStudentView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addStudentComboBoxActionPerformed
 
+    private void addStudentAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentAddButtonActionPerformed
+        // TODO add your handling code here:
+        studentController.validationStudent();
+        studentController.confirmStudent();
+        studentController.cleanTextFieldsAddStudent();
+    }//GEN-LAST:event_addStudentAddButtonActionPerformed
+
+    private void addStudentCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentCancelButtonActionPerformed
+        // TODO add your handling code here:
+        studentController.cleanTextFieldsAddStudent();
+    }//GEN-LAST:event_addStudentCancelButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -201,11 +225,14 @@ public class addStudentView extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addStudentAddButton;
     private javax.swing.JButton addStudentCancelButton;
     private javax.swing.JComboBox<String> addStudentComboBox;
+    private javax.swing.JDialog addStudentDialog;
     private javax.swing.JLabel addStudentLabel1;
     private javax.swing.JLabel addStudentLabel2;
     private javax.swing.JLabel addStudentLabel3;
@@ -219,6 +246,141 @@ public class addStudentView extends javax.swing.JFrame {
     private javax.swing.JTextField addStudentTextField4;
     private javax.swing.JTextField addStudentTextField5;
     private javax.swing.JTextField addStudentTextField6;
-    private javax.swing.JDialog jDialog1;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getAddStudentAddButton() {
+        return addStudentAddButton;
+    }
+
+    public void setAddStudentAddButton(javax.swing.JButton addStudentAddButton) {
+        this.addStudentAddButton = addStudentAddButton;
+    }
+
+    public javax.swing.JButton getAddStudentCancelButton() {
+        return addStudentCancelButton;
+    }
+
+    public void setAddStudentCancelButton(javax.swing.JButton addStudentCancelButton) {
+        this.addStudentCancelButton = addStudentCancelButton;
+    }
+
+    public javax.swing.JComboBox<String> getAddStudentComboBox() {
+        return addStudentComboBox;
+    }
+
+    public void setAddStudentComboBox(javax.swing.JComboBox<String> addStudentComboBox) {
+        this.addStudentComboBox = addStudentComboBox;
+    }
+
+    public javax.swing.JLabel getAddStudentLabel1() {
+        return addStudentLabel1;
+    }
+
+    public void setAddStudentLabel1(javax.swing.JLabel addStudentLabel1) {
+        this.addStudentLabel1 = addStudentLabel1;
+    }
+
+    public javax.swing.JLabel getAddStudentLabel2() {
+        return addStudentLabel2;
+    }
+
+    public void setAddStudentLabel2(javax.swing.JLabel addStudentLabel2) {
+        this.addStudentLabel2 = addStudentLabel2;
+    }
+
+    public javax.swing.JLabel getAddStudentLabel3() {
+        return addStudentLabel3;
+    }
+
+    public void setAddStudentLabel3(javax.swing.JLabel addStudentLabel3) {
+        this.addStudentLabel3 = addStudentLabel3;
+    }
+
+    public javax.swing.JLabel getAddStudentLabel4() {
+        return addStudentLabel4;
+    }
+
+    public void setAddStudentLabel4(javax.swing.JLabel addStudentLabel4) {
+        this.addStudentLabel4 = addStudentLabel4;
+    }
+
+    public javax.swing.JLabel getAddStudentLabel5() {
+        return addStudentLabel5;
+    }
+
+    public void setAddStudentLabel5(javax.swing.JLabel addStudentLabel5) {
+        this.addStudentLabel5 = addStudentLabel5;
+    }
+
+    public javax.swing.JLabel getAddStudentLabel6() {
+        return addStudentLabel6;
+    }
+
+    public void setAddStudentLabel6(javax.swing.JLabel addStudentLabel6) {
+        this.addStudentLabel6 = addStudentLabel6;
+    }
+
+    public javax.swing.JLabel getAddStudentLabel7() {
+        return addStudentLabel7;
+    }
+
+    public void setAddStudentLabel7(javax.swing.JLabel addStudentLabel7) {
+        this.addStudentLabel7 = addStudentLabel7;
+    }
+
+    public javax.swing.JTextField getAddStudentTextField1() {
+        return addStudentTextField1;
+    }
+
+    public void setAddStudentTextField1(javax.swing.JTextField addStudentTextField1) {
+        this.addStudentTextField1 = addStudentTextField1;
+    }
+
+    public javax.swing.JTextField getAddStudentTextField2() {
+        return addStudentTextField2;
+    }
+
+    public void setAddStudentTextField2(javax.swing.JTextField addStudentTextField2) {
+        this.addStudentTextField2 = addStudentTextField2;
+    }
+
+    public javax.swing.JTextField getAddStudentTextField3() {
+        return addStudentTextField3;
+    }
+
+    public void setAddStudentTextField3(javax.swing.JTextField addStudentTextField3) {
+        this.addStudentTextField3 = addStudentTextField3;
+    }
+
+    public javax.swing.JTextField getAddStudentTextField4() {
+        return addStudentTextField4;
+    }
+
+    public void setAddStudentTextField4(javax.swing.JTextField addStudentTextField4) {
+        this.addStudentTextField4 = addStudentTextField4;
+    }
+
+    public javax.swing.JTextField getAddStudentTextField5() {
+        return addStudentTextField5;
+    }
+
+    public void setAddStudentTextField5(javax.swing.JTextField addStudentTextField5) {
+        this.addStudentTextField5 = addStudentTextField5;
+    }
+
+    public javax.swing.JTextField getAddStudentTextField6() {
+        return addStudentTextField6;
+    }
+
+    public void setAddStudentTextField6(javax.swing.JTextField addStudentTextField6) {
+        this.addStudentTextField6 = addStudentTextField6;
+    }
+
+    public javax.swing.JDialog getAddStudentDialog() {
+        return addStudentDialog;
+    }
+
+    public void setAddStudentDialog(javax.swing.JDialog addStudentDialog) {
+        this.addStudentDialog = addStudentDialog;
+    }
 }
