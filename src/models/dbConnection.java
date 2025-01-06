@@ -1,28 +1,36 @@
 package models;
 import controllers.studentController;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class dbConnection {
-    static String url="jdbc:mysql://localhost/eduenroll";
-    static String user="root";
-    static String pass="1234";
     
-    public static Connection connect()
-    {
-       Connection con=null;
-       try
-       {
-       con=DriverManager.getConnection(url,user,pass);
-           System.out.println("Connection successful");
-       }catch(SQLException e)
-       {
-        e.printStackTrace();
-       }
-        return con;
-             
+    public static Connection connect() {
+        Connection con = null;
+        Properties prop = new Properties();
+        
+        // Intentar cargar las propiedades desde el archivo config.properties
+        try (FileInputStream input = new FileInputStream("resources/config.properties")) {
+            prop.load(input);
+            
+            // Obtener las propiedades de la base de datos
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String pass = prop.getProperty("db.pass");
+            
+            // Intentar establecer la conexión con la base de datos
+            con = DriverManager.getConnection(url, user, pass);
+        } catch (IOException | SQLException e) {
+            // Imprimir el error en caso de que algo falle
+            e.printStackTrace();
+        }
+        
+        return con; // Retornar la conexión
     }
     
     public static boolean isValidUser(String username, String password) {
