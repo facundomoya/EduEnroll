@@ -1,4 +1,6 @@
 package models;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class Person {
     private String name;
@@ -66,6 +68,20 @@ public abstract class Person {
     }
 
     public Person() {
+    }
+    
+     public static boolean isValidDNI(String dniStr) {
+        String dniRegex = "^[0-9]{1,8}$";
+        Pattern pattern = Pattern.compile(dniRegex);
+        Matcher matcher = pattern.matcher(dniStr);
+        return matcher.matches();
+    }
+     
+    public static boolean isValidAge(String ageStr) {
+        String ageRegex = "^[1-9][0-9]{0,2}$";
+        Pattern pattern = Pattern.compile(ageRegex);
+        Matcher matcher = pattern.matcher(ageStr);
+        return matcher.matches();
     }
 
 }

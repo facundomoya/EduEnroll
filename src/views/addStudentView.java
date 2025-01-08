@@ -180,9 +180,7 @@ public class addStudentView extends javax.swing.JFrame {
 
     private void addStudentAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentAddButtonActionPerformed
         // TODO add your handling code here:
-        studentController.validationStudent();
-        studentController.confirmStudent();
-        studentController.cleanTextFieldsAddStudent();
+        studentController.validationStudentandAddStudent();
     }//GEN-LAST:event_addStudentAddButtonActionPerformed
 
     private void addStudentCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentCancelButtonActionPerformed
