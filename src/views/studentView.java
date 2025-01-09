@@ -70,6 +70,11 @@ public class studentView extends javax.swing.JFrame {
         });
 
         editStudentButton.setText("Edit student");
+        editStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editStudentButtonActionPerformed(evt);
+            }
+        });
 
         searchStudentButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\search-icon.png")); // NOI18N
 
@@ -143,6 +148,11 @@ public class studentView extends javax.swing.JFrame {
         menuController.showMenu();
         studentController.hideStudentView();        
     }//GEN-LAST:event_backStudentButtonActionPerformed
+
+    private void editStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStudentButtonActionPerformed
+        // TODO add your handling code here:
+        studentController.showEditStudentView();
+    }//GEN-LAST:event_editStudentButtonActionPerformed
 
     /**
      * @param args the command line arguments

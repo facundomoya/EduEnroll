@@ -6,23 +6,29 @@ import javax.swing.JOptionPane;
 import static models.Person.isValidAge;
 import static models.Person.isValidDNI;
 import static models.Person.isValidEmail;
-import models.Student;
 import static models.dbConnection.checkDNIandEmail;
 import static models.dbConnection.newStudent;
 import static models.dbConnection.showStudent;
+import views.editStudentView;
 
 public class studentController {
 
     public static studentView view = new studentView();
     public static addStudentView view_addStudent = new addStudentView();
+    public static editStudentView view_editStudent = new editStudentView();
+    
+    public static void hideStudentView(){
+    view.setVisible(false);
+    }
     
     public static void addStudentButton() {
         view_addStudent.setVisible(true);
         view_addStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
     }
     
-    public static void hideStudentView(){
-    view.setVisible(false);
+    public static void showEditStudentView(){
+    view_editStudent.setVisible(true);
+    view_editStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
     }
     
     public static boolean validationStudentandAddStudent() {
