@@ -145,17 +145,18 @@ public class dbConnection {
     }
 }
  
- public static void checkDNIandEmail(int dni, String email){
+ public static boolean checkDNIandEmail(int dni, String email){
   Connection con = null;
   PreparedStatement pstmt = null;
   ResultSet resultset = null;
-  
+  boolean flagValidations = false;
   
   try{
       
        con = dbConnection.connect();
        String query = "SELECT s.dni, s.email FROM student s WHERE s.dni = ? OR s.email = ? ";
        pstmt = con.prepareStatement(query);
+       
        
        pstmt.setInt(1, dni);
        pstmt.setString(2, email);
@@ -169,15 +170,19 @@ public class dbConnection {
        
        if(db_dni == dni && !db_email.equals(email)){
         JOptionPane.showMessageDialog(null, "Incorrect dni, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidations = true;
        }else if(db_email.equals(email) && db_dni != dni){
         JOptionPane.showMessageDialog(null, "Incorrect email, it already exists ", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidations = true;
        }else if(db_dni == dni && db_email.equals(email) ){
         JOptionPane.showMessageDialog(null, "Incorrect dni and email, they already exist", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidations = true;
        }
        }
   }catch(SQLException e){
   e.printStackTrace();
   }
+  return flagValidations;
  }
  
  public static void newStudent(String status, String degree, String name, String lastname, int age, String nationality, String email, int dni){
@@ -219,6 +224,5 @@ public class dbConnection {
        
   
   }catch(SQLException e){e.printStackTrace();}
-  showStudent();
  }
 }
