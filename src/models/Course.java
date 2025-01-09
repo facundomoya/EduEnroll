@@ -4,7 +4,7 @@ public class Course {
     private String courseName;
     private int courseCode;
     private String description;
-    private int duration;
+    private int year;
 
     public String getCourseName() {
         return courseName;
@@ -30,19 +30,19 @@ public class Course {
         this.description = description;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getyear() {
+        return year;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setDuration(int year) {
+        this.year= year;
     }
 
-    public Course(String courseName, int courseCode, String description, int duration) {
+    public Course(String courseName, int courseCode, String description, int year) {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.description = description;
-        this.duration = duration;
+        this.year = year;
     }
 
     public Course() {

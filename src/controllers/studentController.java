@@ -21,6 +21,10 @@ public class studentController {
         view_addStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
     }
     
+    public static void hideStudentView(){
+    view.setVisible(false);
+    }
+    
     public static boolean validationStudentandAddStudent() {
     String name = view_addStudent.getAddStudentTextField1().getText();
     String lastname = view_addStudent.getAddStudentTextField2().getText();
