@@ -1,5 +1,7 @@
 package models;
 
+import java.time.LocalDate;
+
 public class Administrator extends Person {
     private int adminID;
 
@@ -11,8 +13,8 @@ public class Administrator extends Person {
         this.adminID = adminID;
     }
 
-    public Administrator(int adminID, String name, String lastname, int age, String nationality, String email, int dni) {
-        super(name, lastname, age, nationality, email, dni);
+    public Administrator(int adminID, String name, String lastname, LocalDate birth, String nationality, String email, int dni) {
+        super(name, lastname, birth, nationality, email, dni);
         this.adminID = adminID;
     }
 

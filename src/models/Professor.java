@@ -1,5 +1,7 @@
 package models;
 
+import java.time.LocalDate;
+
 public class Professor extends Person {
     private int professorID;
     private String professorType;
@@ -20,8 +22,8 @@ public class Professor extends Person {
         this.professorType = professorType;
     }
 
-    public Professor(int professorID, String professorType, String name, String lastname, int age, String nationality, String email, int dni) {
-        super(name, lastname, age, nationality, email, dni);
+    public Professor(int professorID, String professorType, String name, String lastname, LocalDate birth, String nationality, String email, int dni) {
+        super(name, lastname, birth, nationality, email, dni);
         this.professorID = professorID;
         this.professorType = professorType;
     }

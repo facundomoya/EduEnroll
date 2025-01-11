@@ -45,30 +45,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="addStudentLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="addStudentLabel3" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="addStudentLabel4" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="addStudentLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="addStudentLabel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="addStudentLabel6" min="-2" pref="75" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="addStudentTextField2" alignment="1" pref="254" max="32767" attributes="0"/>
-                          <Component id="addStudentTextField3" alignment="1" max="32767" attributes="0"/>
-                          <Component id="addStudentTextField4" alignment="1" pref="254" max="32767" attributes="0"/>
-                          <Component id="addStudentTextField5" alignment="1" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="addStudentLabel1" min="-2" pref="46" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="addStudentTextField1" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="addStudentLabel6" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="addStudentLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -79,6 +59,23 @@
                           </Group>
                           <Component id="addStudentTextField6" max="32767" attributes="0"/>
                           <Component id="addStudentComboBox" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="addStudentLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="addStudentLabel3" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="addStudentLabel4" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="addStudentLabel5" alignment="0" max="32767" attributes="0"/>
+                          <Component id="addStudentLabel1" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="addStudentTextField1" max="32767" attributes="0"/>
+                          <Component id="addStudentTextField2" alignment="1" pref="254" max="32767" attributes="0"/>
+                          <Component id="addStudentTextField3" alignment="1" max="32767" attributes="0"/>
+                          <Component id="addStudentTextField4" alignment="1" pref="254" max="32767" attributes="0"/>
+                          <Component id="addStudentTextField5" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -164,7 +161,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="addStudentLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Age:"/>
+        <Property name="text" type="java.lang.String" value="Date of birth:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="addStudentTextField2">

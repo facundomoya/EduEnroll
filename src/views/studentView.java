@@ -19,6 +19,8 @@ public class studentView extends javax.swing.JFrame {
     public studentView() {
         initComponents();
     }
+    
+     // Establecer el texto del placeholder
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,7 +54,7 @@ public class studentView extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Lastname", "Age", "Nacionality", "Degree", "DNI", "Status"
+                "Name", "Lastname", "Date of birth", "Nacionality", "Degree", "DNI", "Status"
             }
         ));
         jScrollPane1.setViewportView(studentTable);

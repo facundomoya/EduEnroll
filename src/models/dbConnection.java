@@ -3,6 +3,7 @@ import controllers.studentController;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.JOptionPane;
@@ -79,7 +80,7 @@ public class dbConnection {
     // Agregar las columnas al modelo
     model.addColumn("Name");
     model.addColumn("Lastname");
-    model.addColumn("Age");
+    model.addColumn("Birth");
     model.addColumn("Nationality");
     model.addColumn("Degree");
     model.addColumn("DNI");
@@ -89,18 +90,22 @@ public class dbConnection {
         // Conexión a la base de datos
         con = dbConnection.connect();
         stmt = con.createStatement();
-        String query = "SELECT s.name, s.lastname, s.age, s.nationality, s.degree, s.status, s.dni " +
+        String query = "SELECT s.name, s.lastname, s.birth, s.nationality, s.degree, s.status, s.dni " +
                        "FROM student s ";
         resultset = stmt.executeQuery(query);
+        
+         
 
         // Recorrer el ResultSet y agregar los datos a las listas
         while (resultset.next()) {
+            Date sqlDate = resultset.getDate("birth");
+            LocalDate birth = sqlDate != null ? sqlDate.toLocalDate() : null;
             Student student = new Student(
                 resultset.getString("status"),
                 resultset.getString("degree"),
                 resultset.getString("name"),
                 resultset.getString("lastname"),
-                resultset.getInt("age"),
+                birth,
                 resultset.getString("nationality"),
                 null,
                 resultset.getInt("dni")            
@@ -113,7 +118,7 @@ public class dbConnection {
             Object[] row = new Object[7];
             row[0] = student.getName();
             row[1] = student.getLastname();
-            row[2] = student.getAge();
+            row[2] = student.getBirth();
             row[3] = student.getNationality();
             row[4] = student.getDegree();
             row[5] = student.getDni();
@@ -185,7 +190,7 @@ public class dbConnection {
   return flagValidations;
  }
  
- public static void newStudent(String status, String degree, String name, String lastname, int age, String nationality, String email, int dni){
+ public static void newStudent(String status, String degree, String name, String lastname, LocalDate age, String nationality, String email, int dni){
   Connection con = null;
   PreparedStatement pstmt = null;
   
@@ -197,7 +202,7 @@ public class dbConnection {
   
   try{
        con = dbConnection.connect();
-       String query = "INSERT INTO student(status, degree, name, lastname, age, nationality, email, dni, codeDegree) VALUES (?,?,?,?,?,?,?,?, \n" +
+       String query = "INSERT INTO student(status, degree, name, lastname, birth, nationality, email, dni, codeDegree) VALUES (?,?,?,?,?,?,?,?, \n" +
 "CASE\n" +
 "        WHEN degree = 'Electrical Engineering' THEN 1\n" +
 "        WHEN degree = 'Civil Engineering' THEN 2\n" +
@@ -212,7 +217,7 @@ public class dbConnection {
        pstmt.setString(2, s.getDegree()); 
        pstmt.setString(3, s.getName()); 
        pstmt.setString(4, s.getLastname()); 
-       pstmt.setInt(5, s.getAge()); 
+       pstmt.setDate(5, s.getBirth() != null ? java.sql.Date.valueOf(s.getBirth()) : null); // Se maneja null en caso de que age sea null
        pstmt.setString(6, s.getNationality()); 
        pstmt.setString(7, s.getEmail()); 
        pstmt.setInt(8, s.getDni()); 

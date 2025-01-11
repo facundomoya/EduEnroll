@@ -1,11 +1,13 @@
 package models;
+
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Person {
     private String name;
     private String lastname;
-    private int age;
+    private LocalDate birth;
     private String nationality;
     private String email;
     private int dni;
@@ -24,14 +26,6 @@ public abstract class Person {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getNationality() {
@@ -57,11 +51,19 @@ public abstract class Person {
     public void setDni(int dni) {
         this.dni = dni;
     }
+    
+       public LocalDate getBirth() {
+        return birth;
+    }
 
-    public Person(String name, String lastname, int age, String nationality, String email, int dni) {
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
+    }
+
+    public Person(String name, String lastname, LocalDate birth, String nationality, String email, int dni) {
         this.name = name;
         this.lastname = lastname;
-        this.age = age;
+        this.birth = birth;
         this.nationality = nationality;
         this.email = email;
         this.dni = dni;
@@ -77,12 +79,18 @@ public abstract class Person {
         return matcher.matches();
     }
      
-    public static boolean isValidAge(String ageStr) {
-        String ageRegex = "^[1-9][0-9]{0,2}$";
-        Pattern pattern = Pattern.compile(ageRegex);
-        Matcher matcher = pattern.matcher(ageStr);
-        return matcher.matches();
-    }
+ public static boolean isValidBirth(String birth) {
+    // Convertir LocalDate a String con el formato YYYY-MM-DD
+    String ageStr = birth.toString(); // Esto convierte el LocalDate a un String en el formato adecuado
+    
+    // Expresión regular para una fecha en formato YYYY-MM-DD
+    String dateRegex = "^(19|20)\\d\\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
+    Pattern pattern = Pattern.compile(dateRegex);
+    Matcher matcher = pattern.matcher(ageStr);
+    
+    return matcher.matches();
+}
+
     
     public static boolean isValidEmail(String emailStr) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
@@ -90,8 +98,5 @@ public abstract class Person {
         Matcher matcher = pattern.matcher(emailStr);
         return matcher.matches();
 }
-
-    
-    
 
 }

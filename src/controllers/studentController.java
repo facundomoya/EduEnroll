@@ -1,9 +1,10 @@
 package controllers;
 
+import java.time.LocalDate;
 import views.addStudentView;
 import views.studentView;
 import javax.swing.JOptionPane;
-import static models.Person.isValidAge;
+import static models.Person.isValidBirth;
 import static models.Person.isValidDNI;
 import static models.Person.isValidEmail;
 import static models.dbConnection.checkDNIandEmail;
@@ -37,19 +38,20 @@ public class studentController {
     String dniStr = view_addStudent.getAddStudentTextField3().getText();
     String email = view_addStudent.getAddStudentTextField4().getText();
     String nationality = view_addStudent.getAddStudentTextField5().getText();
-    String ageStr = view_addStudent.getAddStudentTextField6().getText();
+    String birthStr = view_addStudent.getAddStudentTextField6().getText();
     String degree = (String) view_addStudent.getAddStudentComboBox().getSelectedItem();
     String status = "active";
     
     boolean flag = false;
     
-    if(dniStr != null && !dniStr.trim().isEmpty() && ageStr != null && !ageStr.trim().isEmpty() && !(name.equals("") || lastname.equals("") || email.equals("") || nationality.equals("") || degree.equals("..."))){
+    
+    if(dniStr != null && !dniStr.trim().isEmpty() && birthStr != null && !birthStr.trim().isEmpty() && !(name.equals("") || lastname.equals("") || email.equals("") || nationality.equals("") || degree.equals("..."))){
     if(isValidDNI(dniStr)){
-    if(isValidAge(ageStr)){
+    if(isValidBirth(birthStr)){
+        LocalDate age = LocalDate.parse(birthStr);
         if(isValidEmail(email)){
             try{
     int dni = Integer.parseInt(dniStr);
-    int age = Integer.parseInt(ageStr);
     boolean flagValidations = checkDNIandEmail(dni,email);
     if(flagValidations == false){
     newStudent(status, degree, name, lastname, age, nationality, email, dni);
@@ -63,7 +65,7 @@ public class studentController {
     JOptionPane.showMessageDialog(null, "Email is invalid", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
     }else{
-    JOptionPane.showMessageDialog(null, "Age is invalid", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, "Date of birth is invalid. Follow the format YYYY-MM-DD", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
     }else{
     JOptionPane.showMessageDialog(null, "DNI is invalid", "Alert", JOptionPane.INFORMATION_MESSAGE);
