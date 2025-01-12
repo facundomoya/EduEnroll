@@ -245,5 +245,29 @@ public class studentView extends javax.swing.JFrame {
         this.studentTable = studentTable;
     }
 
+    public javax.swing.JButton getBackStudentButton() {
+        return backStudentButton;
+    }
+
+    public void setBackStudentButton(javax.swing.JButton backStudentButton) {
+        this.backStudentButton = backStudentButton;
+    }
+
+    public javax.swing.JButton getDeleteStudentButton() {
+        return deleteStudentButton;
+    }
+
+    public void setDeleteStudentButton(javax.swing.JButton deleteStudentButton) {
+        this.deleteStudentButton = deleteStudentButton;
+    }
+
+    public javax.swing.JButton getSearchStudentButton() {
+        return searchStudentButton;
+    }
+
+    public void setSearchStudentButton(javax.swing.JButton searchStudentButton) {
+        this.searchStudentButton = searchStudentButton;
+    }
+
     
 }

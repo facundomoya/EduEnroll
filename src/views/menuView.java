@@ -5,6 +5,8 @@
 package views;
 
 import controllers.menuController;
+import javax.accessibility.AccessibleContext;
+import javax.swing.JRootPane;
 
 
 /**
@@ -88,11 +90,11 @@ public class menuView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
+                .addContainerGap(174, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(menuLabel1)
-                        .addGap(112, 112, 112)
+                        .addComponent(menuLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86)
                         .addComponent(menuLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(exitButton))
                 .addGap(26, 26, 26))
@@ -177,6 +179,8 @@ public class menuView extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
@@ -253,4 +257,20 @@ public class menuView extends javax.swing.JFrame {
     public void setMenuLabel7(javax.swing.JLabel menuLabel7) {
         this.menuLabel7 = menuLabel7;
     }   
+
+    public javax.swing.JButton getExitButton() {
+        return exitButton;
+    }
+
+    public void setExitButton(javax.swing.JButton exitButton) {
+        this.exitButton = exitButton;
+    }
+
+    public javax.swing.JLabel getMenuLabel8() {
+        return menuLabel8;
+    }
+
+    public void setMenuLabel8(javax.swing.JLabel menuLabel8) {
+        this.menuLabel8 = menuLabel8;
+    }
 }
