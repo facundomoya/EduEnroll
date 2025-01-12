@@ -1,16 +1,20 @@
 package controllers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import views.addStudentView;
 import views.studentView;
 import javax.swing.JOptionPane;
 import static models.Person.isValidBirth;
 import static models.Person.isValidDNI;
 import static models.Person.isValidEmail;
+import models.Student;
 import static models.dbConnection.checkDNIandEmail;
 import static models.dbConnection.newStudent;
+import static models.dbConnection.searchStudentEdit;
 import static models.dbConnection.showStudent;
 import views.editStudentView;
+
 
 public class studentController {
 
@@ -25,11 +29,13 @@ public class studentController {
     public static void addStudentButton() {
         view_addStudent.setVisible(true);
         view_addStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
+        cleanTextFieldsAddStudent();
     }
     
     public static void showEditStudentView(){
     view_editStudent.setVisible(true);
     view_editStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
+    cleanTextFieldEditStudent();
     }
     
     public static boolean validationStudentandAddStudent() {
@@ -54,7 +60,7 @@ public class studentController {
     int dni = Integer.parseInt(dniStr);
     boolean flagValidations = checkDNIandEmail(dni,email);
     if(flagValidations == false){
-    newStudent(status, degree, name, lastname, age, nationality, email, dni);
+    newStudent(0, status, degree, name, lastname, age, nationality, email, dni);
     JOptionPane.showMessageDialog(null, "The student has been successfully added", "Success", JOptionPane.INFORMATION_MESSAGE);
     showStudent();
     flag = true;
@@ -77,7 +83,6 @@ public class studentController {
     }
     
     public static void cleanTextFieldsAddStudent(){
-    view_addStudent.setVisible(false);
     studentController.view_addStudent.getAddStudentTextField1().setText("");
     studentController.view_addStudent.getAddStudentTextField2().setText("");
     studentController.view_addStudent.getAddStudentTextField3().setText("");
@@ -85,6 +90,47 @@ public class studentController {
     studentController.view_addStudent.getAddStudentTextField5().setText("");
     studentController.view_addStudent.getAddStudentTextField6().setText("");
     studentController.view_addStudent.getAddStudentComboBox().setSelectedIndex(0);
+    }
+    
+    public static void cleanTextFieldEditStudent(){
+        studentController.view_editStudent.getEditStudentLabel2().setEnabled(false);
+        studentController.view_editStudent.getEditStudentLabel3().setEnabled(false);
+        studentController.view_editStudent.getEditStudentLabel4().setEnabled(false);
+        studentController.view_editStudent.getEditStudentLabel5().setEnabled(false);
+        studentController.view_editStudent.getEditStudentLabel6().setEnabled(false);
+        studentController.view_editStudent.getEditStudentLabel7().setEnabled(false);
+        studentController.view_editStudent.getEditStudentTextField2().setEnabled(false);
+        studentController.view_editStudent.getEditStudentTextField3().setEnabled(false);
+        studentController.view_editStudent.getEditStudentTextField4().setEnabled(false);
+        studentController.view_editStudent.getEditStudentTextField5().setEnabled(false);
+        studentController.view_editStudent.getEditStudentComboBox1().setEnabled(false);
+        studentController.view_editStudent.getEditStudentComboBox2().setEnabled(false);
+        studentController.view_editStudent.getEditEditStudentButton().setEnabled(false);
+        studentController.view_editStudent.getEditStudentTextField1().setText("");
+        studentController.view_editStudent.getEditStudentTextField2().setText("");
+        studentController.view_editStudent.getEditStudentTextField3().setText("");
+        studentController.view_editStudent.getEditStudentTextField4().setText("");
+        studentController.view_editStudent.getEditStudentTextField5().setText("");
+        studentController.view_editStudent.getEditStudentComboBox1().setSelectedIndex(0);
+        studentController.view_editStudent.getEditStudentComboBox2().setSelectedIndex(0);
+    }
+    
+    public static void searchEditButton(){
+    int studentIDInt = Integer.parseInt(studentController.view_editStudent.getEditStudentTextField1().getText());
+    ArrayList<Student> studentList = searchStudentEdit(studentIDInt);
+    if(studentList.size() == 0){
+    cleanTextFieldEditStudent();
+    JOptionPane.showMessageDialog(null, "No student was found with that ID", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
+    for(Student s : studentList){
+    studentController.view_editStudent.getEditStudentTextField2().setText(String.valueOf(s.getDni()));
+    studentController.view_editStudent.getEditStudentTextField3().setText(s.getName());
+    studentController.view_editStudent.getEditStudentTextField4().setText(s.getLastname());
+    studentController.view_editStudent.getEditStudentTextField5().setText(s.getNationality());
+    studentController.view_editStudent.getEditStudentComboBox1().setSelectedItem(s.getStatus());
+    studentController.view_editStudent.getEditStudentComboBox2().setSelectedItem(s.getDegree());   
+    }
+    
     }
     
     

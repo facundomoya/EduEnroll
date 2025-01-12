@@ -4,6 +4,8 @@
  */
 package views;
 
+import controllers.studentController;
+
 /**
  *
  * @author facun
@@ -15,6 +17,19 @@ public class editStudentView extends javax.swing.JFrame {
      */
     public editStudentView() {
         initComponents();
+        editStudentLabel2.setEnabled(false);
+        editStudentLabel3.setEnabled(false);
+        editStudentLabel4.setEnabled(false);
+        editStudentLabel5.setEnabled(false);
+        editStudentLabel6.setEnabled(false);
+        editStudentLabel7.setEnabled(false);
+        editStudentTextField2.setEnabled(false);
+        editStudentTextField3.setEnabled(false);
+        editStudentTextField4.setEnabled(false);
+        editStudentTextField5.setEnabled(false);
+        editStudentComboBox1.setEnabled(false);
+        editStudentComboBox2.setEnabled(false);
+        editEditStudentButton.setEnabled(false);
     }
 
     /**
@@ -49,6 +64,11 @@ public class editStudentView extends javax.swing.JFrame {
         editStudentLabel2.setText("DNI:");
 
         searchEditStudentButton.setText("Search");
+        searchEditStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchEditStudentButtonActionPerformed(evt);
+            }
+        });
 
         editStudentLabel3.setText("Name:");
 
@@ -68,13 +88,18 @@ public class editStudentView extends javax.swing.JFrame {
             }
         });
 
-        editStudentComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        editStudentComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "active", "inactive", "graduated" }));
 
-        editStudentComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        editStudentComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Electrical Engineering", "Civil Engineering", "Mechanical Engineering" }));
 
         editEditStudentButton.setText("Edit");
 
         cancelEditStudentButton.setText("Cancel");
+        cancelEditStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelEditStudentButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,6 +188,30 @@ public class editStudentView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_editStudentTextField3ActionPerformed
 
+    private void searchEditStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEditStudentButtonActionPerformed
+        // TODO add your handling code here:
+        editStudentLabel2.setEnabled(true);
+        editStudentLabel3.setEnabled(true);
+        editStudentLabel4.setEnabled(true);
+        editStudentLabel5.setEnabled(true);
+        editStudentLabel6.setEnabled(true);
+        editStudentLabel7.setEnabled(true);
+        editStudentTextField2.setEnabled(true);
+        editStudentTextField3.setEnabled(true);
+        editStudentTextField4.setEnabled(true);
+        editStudentTextField5.setEnabled(true);
+        editStudentComboBox1.setEnabled(true);
+        editStudentComboBox2.setEnabled(true);
+        editEditStudentButton.setEnabled(true);
+        studentController.searchEditButton();
+    }//GEN-LAST:event_searchEditStudentButtonActionPerformed
+
+    private void cancelEditStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelEditStudentButtonActionPerformed
+        // TODO add your handling code here:
+        studentController.view_editStudent.setVisible(false);
+        studentController.cleanTextFieldEditStudent();
+    }//GEN-LAST:event_cancelEditStudentButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,6 +244,11 @@ public class editStudentView extends javax.swing.JFrame {
             public void run() {
                 new editStudentView().setVisible(true);
             }
+            
+            public static void showSetEnabledFalse(){
+            
+            }
+            
         });
     }
 
@@ -217,4 +271,140 @@ public class editStudentView extends javax.swing.JFrame {
     private javax.swing.JTextField editStudentTextField5;
     private javax.swing.JButton searchEditStudentButton;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getCancelEditStudentButton() {
+        return cancelEditStudentButton;
+    }
+
+    public void setCancelEditStudentButton(javax.swing.JButton cancelEditStudentButton) {
+        this.cancelEditStudentButton = cancelEditStudentButton;
+    }
+
+    public javax.swing.JButton getEditEditStudentButton() {
+        return editEditStudentButton;
+    }
+
+    public void setEditEditStudentButton(javax.swing.JButton editEditStudentButton) {
+        this.editEditStudentButton = editEditStudentButton;
+    }
+
+    public javax.swing.JComboBox<String> getEditStudentComboBox1() {
+        return editStudentComboBox1;
+    }
+
+    public void setEditStudentComboBox1(javax.swing.JComboBox<String> editStudentComboBox1) {
+        this.editStudentComboBox1 = editStudentComboBox1;
+    }
+
+    public javax.swing.JComboBox<String> getEditStudentComboBox2() {
+        return editStudentComboBox2;
+    }
+
+    public void setEditStudentComboBox2(javax.swing.JComboBox<String> editStudentComboBox2) {
+        this.editStudentComboBox2 = editStudentComboBox2;
+    }
+
+    public javax.swing.JLabel getEditStudentLabel1() {
+        return editStudentLabel1;
+    }
+
+    public void setEditStudentLabel1(javax.swing.JLabel editStudentLabel1) {
+        this.editStudentLabel1 = editStudentLabel1;
+    }
+
+    public javax.swing.JLabel getEditStudentLabel2() {
+        return editStudentLabel2;
+    }
+
+    public void setEditStudentLabel2(javax.swing.JLabel editStudentLabel2) {
+        this.editStudentLabel2 = editStudentLabel2;
+    }
+
+    public javax.swing.JLabel getEditStudentLabel3() {
+        return editStudentLabel3;
+    }
+
+    public void setEditStudentLabel3(javax.swing.JLabel editStudentLabel3) {
+        this.editStudentLabel3 = editStudentLabel3;
+    }
+
+    public javax.swing.JLabel getEditStudentLabel4() {
+        return editStudentLabel4;
+    }
+
+    public void setEditStudentLabel4(javax.swing.JLabel editStudentLabel4) {
+        this.editStudentLabel4 = editStudentLabel4;
+    }
+
+    public javax.swing.JLabel getEditStudentLabel5() {
+        return editStudentLabel5;
+    }
+
+    public void setEditStudentLabel5(javax.swing.JLabel editStudentLabel5) {
+        this.editStudentLabel5 = editStudentLabel5;
+    }
+
+    public javax.swing.JLabel getEditStudentLabel6() {
+        return editStudentLabel6;
+    }
+
+    public void setEditStudentLabel6(javax.swing.JLabel editStudentLabel6) {
+        this.editStudentLabel6 = editStudentLabel6;
+    }
+
+    public javax.swing.JLabel getEditStudentLabel7() {
+        return editStudentLabel7;
+    }
+
+    public void setEditStudentLabel7(javax.swing.JLabel editStudentLabel7) {
+        this.editStudentLabel7 = editStudentLabel7;
+    }
+
+    public javax.swing.JTextField getEditStudentTextField1() {
+        return editStudentTextField1;
+    }
+
+    public void setEditStudentTextField1(javax.swing.JTextField editStudentTextField1) {
+        this.editStudentTextField1 = editStudentTextField1;
+    }
+
+    public javax.swing.JTextField getEditStudentTextField2() {
+        return editStudentTextField2;
+    }
+
+    public void setEditStudentTextField2(javax.swing.JTextField editStudentTextField2) {
+        this.editStudentTextField2 = editStudentTextField2;
+    }
+
+    public javax.swing.JTextField getEditStudentTextField3() {
+        return editStudentTextField3;
+    }
+
+    public void setEditStudentTextField3(javax.swing.JTextField editStudentTextField3) {
+        this.editStudentTextField3 = editStudentTextField3;
+    }
+
+    public javax.swing.JTextField getEditStudentTextField4() {
+        return editStudentTextField4;
+    }
+
+    public void setEditStudentTextField4(javax.swing.JTextField editStudentTextField4) {
+        this.editStudentTextField4 = editStudentTextField4;
+    }
+
+    public javax.swing.JTextField getEditStudentTextField5() {
+        return editStudentTextField5;
+    }
+
+    public void setEditStudentTextField5(javax.swing.JTextField editStudentTextField5) {
+        this.editStudentTextField5 = editStudentTextField5;
+    }
+
+    public javax.swing.JButton getSearchEditStudentButton() {
+        return searchEditStudentButton;
+    }
+
+    public void setSearchEditStudentButton(javax.swing.JButton searchEditStudentButton) {
+        this.searchEditStudentButton = searchEditStudentButton;
+    }
 }

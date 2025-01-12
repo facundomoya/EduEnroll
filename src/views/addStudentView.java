@@ -185,6 +185,7 @@ public class addStudentView extends javax.swing.JFrame {
 
     private void addStudentCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentCancelButtonActionPerformed
         // TODO add your handling code here:
+        studentController.view_addStudent.setVisible(false);
         studentController.cleanTextFieldsAddStudent();
     }//GEN-LAST:event_addStudentCancelButtonActionPerformed
 

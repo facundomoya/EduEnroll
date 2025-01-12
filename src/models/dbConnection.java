@@ -101,6 +101,7 @@ public class dbConnection {
             Date sqlDate = resultset.getDate("birth");
             LocalDate birth = sqlDate != null ? sqlDate.toLocalDate() : null;
             Student student = new Student(
+                0,
                 resultset.getString("status"),
                 resultset.getString("degree"),
                 resultset.getString("name"),
@@ -190,13 +191,13 @@ public class dbConnection {
   return flagValidations;
  }
  
- public static void newStudent(String status, String degree, String name, String lastname, LocalDate age, String nationality, String email, int dni){
+ public static void newStudent(int studentID, String status, String degree, String name, String lastname, LocalDate age, String nationality, String email, int dni){
   Connection con = null;
   PreparedStatement pstmt = null;
   
   ArrayList<Student> studentList = new ArrayList<>();
   
-  Student student = new Student(status,degree,name,lastname,age,nationality,email,dni);
+  Student student = new Student(studentID, status,degree,name,lastname,age,nationality,email,dni);
   
   studentList.add(student);
   
@@ -230,5 +231,44 @@ public class dbConnection {
   
   }catch(SQLException e){e.printStackTrace();}
  }
+ 
+ public static ArrayList<Student> searchStudentEdit(int studentID){
+ Connection con = null;
+  PreparedStatement pstmt = null;
+  ResultSet resultset = null;
+  ArrayList<Student> studentList = new ArrayList<>();
+  
+ //studentID, status, degree, name, lastname,  birth, nationality, email, dni
 
+  
+  try{
+   con = dbConnection.connect();
+   String query = "SELECT s.dni, s.name, s.lastname, s.nationality, s.status, s.degree FROM student s WHERE s.studentID = ?";
+   pstmt = con.prepareStatement(query);
+   pstmt.setInt(1, studentID);
+   resultset = pstmt.executeQuery(); 
+   
+     while (resultset.next()) {
+            Student student = new Student(
+                studentID,
+                resultset.getString("status"),
+                resultset.getString("degree"),
+                resultset.getString("name"),
+                resultset.getString("lastname"),
+                null,
+                resultset.getString("nationality"),
+                null,
+                resultset.getInt("dni")           
+            );
+            
+             studentList.add(student);
+  }  
+
+    
+ }catch(SQLException e){e.printStackTrace();}
+  
+ 
+
+  return studentList;
+ }
 }

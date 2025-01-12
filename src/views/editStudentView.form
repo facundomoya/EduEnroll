@@ -132,6 +132,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchEditStudentButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="editStudentLabel3">
       <Properties>
@@ -178,10 +181,10 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="..."/>
+            <StringItem index="1" value="active"/>
+            <StringItem index="2" value="inactive"/>
+            <StringItem index="3" value="graduated"/>
           </StringArray>
         </Property>
       </Properties>
@@ -193,10 +196,10 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="..."/>
+            <StringItem index="1" value="Electrical Engineering"/>
+            <StringItem index="2" value="Civil Engineering"/>
+            <StringItem index="3" value="Mechanical Engineering"/>
           </StringArray>
         </Property>
       </Properties>
@@ -213,6 +216,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelEditStudentButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
