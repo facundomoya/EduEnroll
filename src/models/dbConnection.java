@@ -318,4 +318,40 @@ codeDegree = degreeObject.getCodeDegree();  // Obtener el codeDegree desde el ob
   
 
  }
+ 
+ public static boolean checkDNIStudentEdit(String studentIDStr, int dni){
+ 
+ Connection con = null;
+  PreparedStatement pstmt = null;
+  ResultSet resultset = null;
+  boolean flagValidations = false;
+  
+int studentID = Integer.parseInt(studentIDStr);  // Conversión correcta de String a int
+
+  
+  try{
+      
+       con = dbConnection.connect();
+       String query = "SELECT s.dni FROM student s WHERE s.dni = ? AND s.studentID != ?";
+       pstmt = con.prepareStatement(query);
+       
+       
+       pstmt.setInt(1, dni);
+       pstmt.setInt(2, studentID);
+       resultset = pstmt.executeQuery();
+       
+      
+       
+       if(resultset.next()){
+       int db_dni = resultset.getInt("dni");
+       if(db_dni == dni){
+        JOptionPane.showMessageDialog(null, "Incorrect dni, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidations = true;
+       }
+       }
+  }catch(SQLException e){
+  e.printStackTrace();
+  }
+  return flagValidations;
+ }
 }

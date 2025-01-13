@@ -10,6 +10,7 @@ import static models.Person.isValidDNI;
 import static models.Person.isValidEmail;
 import models.Student;
 import static models.Student.isValidStudentID;
+import static models.dbConnection.checkDNIStudentEdit;
 import static models.dbConnection.checkDNIandEmail;
 import static models.dbConnection.editStudent;
 import static models.dbConnection.newStudent;
@@ -159,7 +160,7 @@ public class studentController {
     int studentID = Integer.parseInt(studentIDStr);
     try{
     int dni = Integer.parseInt(dniStr);
-    boolean flagValidations = checkDNIandEmail(dni, null);
+    boolean flagValidations = checkDNIStudentEdit(studentIDStr, dni);
     if(flagValidations == false){
     editStudent(studentID, dni, name, lastname, nationality, status, degree);
     JOptionPane.showMessageDialog(null, "The student has been successfully edited", "Success", JOptionPane.INFORMATION_MESSAGE);
