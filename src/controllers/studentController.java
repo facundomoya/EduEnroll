@@ -12,10 +12,12 @@ import models.Student;
 import static models.Student.isValidStudentID;
 import static models.dbConnection.checkDNIStudentEdit;
 import static models.dbConnection.checkDNIandEmail;
+import static models.dbConnection.deleteStudent;
 import static models.dbConnection.editStudent;
 import static models.dbConnection.newStudent;
 import static models.dbConnection.searchStudentEdit;
 import static models.dbConnection.showStudent;
+import views.deleteStudentView;
 import views.editStudentView;
 
 
@@ -24,6 +26,7 @@ public class studentController {
     public static studentView view = new studentView();
     public static addStudentView view_addStudent = new addStudentView();
     public static editStudentView view_editStudent = new editStudentView();
+    public static deleteStudentView view_deleteStudent = new deleteStudentView();
     
     public static void hideStudentView(){
     view.setVisible(false);
@@ -39,6 +42,12 @@ public class studentController {
     view_editStudent.setVisible(true);
     view_editStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
     cleanTextFieldEditStudent();
+    }
+    
+    public static void showDeleteStudentView(){
+    view_deleteStudent.setVisible(true);
+    view_deleteStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
+    cleanTextFieldDeleteStudent();
     }
     
     public static boolean validationStudentandAddStudent() {
@@ -118,6 +127,10 @@ public class studentController {
         studentController.view_editStudent.getEditStudentComboBox2().setSelectedIndex(0);
     }
     
+    public static void cleanTextFieldDeleteStudent(){
+    studentController.view_deleteStudent.getDeleteStudentTextField1().setText("");
+    }
+    
     public static void searchEditButton(){
     String studentIDStr = studentController.view_editStudent.getEditStudentTextField1().getText();
   
@@ -139,7 +152,7 @@ public class studentController {
     }     
     
     }else{
-    JOptionPane.showMessageDialog(null, "The studentID is invalid", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, "StudentID is invalid or doesn't exist.", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
    
     }
@@ -156,8 +169,8 @@ public class studentController {
     boolean flag = false;
     
     if(dniStr != null && !dniStr.trim().isEmpty() && !(name.equals("") || lastname.equals("") || nationality.equals("") || degree.equals("...")|| status.equals("..."))){
-    if(isValidDNI(dniStr)){
     int studentID = Integer.parseInt(studentIDStr);
+    if(isValidDNI(dniStr)){
     try{
     int dni = Integer.parseInt(dniStr);
     boolean flagValidations = checkDNIStudentEdit(studentIDStr, dni);
@@ -176,6 +189,18 @@ public class studentController {
     JOptionPane.showMessageDialog(null, "You have to complete all fields", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
     return flag;
+    }
+    
+    public static void deleteButton(){
+    String studentIDStr = studentController.view_deleteStudent.getDeleteStudentTextField1().getText();  
+    if(isValidStudentID(studentIDStr)){
+    deleteStudent(studentIDStr);
+    JOptionPane.showMessageDialog(null, "The student has been succesfully deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+    showStudent();
+    cleanTextFieldDeleteStudent();
+    }else{
+    JOptionPane.showMessageDialog(null, "StudentID is invalid or doesn't exist.", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
     }
     
 }

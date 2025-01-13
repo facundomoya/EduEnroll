@@ -81,6 +81,11 @@ public class studentView extends javax.swing.JFrame {
         searchStudentButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\search-icon.png")); // NOI18N
 
         deleteStudentButton.setText("Delete student");
+        deleteStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteStudentButtonActionPerformed(evt);
+            }
+        });
 
         backStudentButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\back-icon.png")); // NOI18N
         backStudentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +160,11 @@ public class studentView extends javax.swing.JFrame {
         // TODO add your handling code here:
         studentController.showEditStudentView();
     }//GEN-LAST:event_editStudentButtonActionPerformed
+
+    private void deleteStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentButtonActionPerformed
+        // TODO add your handling code here:
+        studentController.showDeleteStudentView();
+    }//GEN-LAST:event_deleteStudentButtonActionPerformed
 
     /**
      * @param args the command line arguments

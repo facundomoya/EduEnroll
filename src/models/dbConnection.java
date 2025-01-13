@@ -39,14 +39,16 @@ public class dbConnection {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         
+        User user = new User(username, password);
+        
         try {
             connection = dbConnection.connect();
             
             // SQL para consultar si el usuario y la contraseña coinciden
             String query = "SELECT * FROM User WHERE BINARY user_name = ? AND BINARY password = ?";
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, user.getUser_name());
+            preparedStatement.setString(2, user.getPassword());
             
             resultSet = preparedStatement.executeQuery();
             
@@ -198,12 +200,9 @@ public class dbConnection {
  public static void newStudent(int studentID, String status, String degree, String name, String lastname, LocalDate birth, String nationality, String email, int dni){
   Connection con = null;
   PreparedStatement pstmt = null;
-  
-  ArrayList<Student> studentList = new ArrayList<>();
-  
+
   Student student = new Student(studentID, status,degree,name,lastname,birth,nationality,email,dni);
   
-  studentList.add(student);
   
   try{
        con = dbConnection.connect();
@@ -217,22 +216,17 @@ public class dbConnection {
 ")";
        pstmt = con.prepareStatement(query);
  
-       for(Student s : studentList){
-       pstmt.setString(1, s.getStatus());
-       pstmt.setString(2, s.getDegree()); 
-       pstmt.setString(3, s.getName()); 
-       pstmt.setString(4, s.getLastname()); 
-       pstmt.setDate(5, s.getBirth() != null ? java.sql.Date.valueOf(s.getBirth()) : null); // Se maneja null en caso de que age sea null
-       pstmt.setString(6, s.getNationality()); 
-       pstmt.setString(7, s.getEmail()); 
-       pstmt.setInt(8, s.getDni()); 
+       pstmt.setString(1, student.getStatus());
+       pstmt.setString(2, student.getDegree()); 
+       pstmt.setString(3, student.getName()); 
+       pstmt.setString(4, student.getLastname()); 
+       pstmt.setDate(5, student.getBirth() != null ? java.sql.Date.valueOf(student.getBirth()) : null); // Se maneja null en caso de que age sea null
+       pstmt.setString(6, student.getNationality()); 
+       pstmt.setString(7, student.getEmail()); 
+       pstmt.setInt(8, student.getDni()); 
 
        pstmt.executeUpdate();
        
-       }
-       
-       
-  
   }catch(SQLException e){e.printStackTrace();}
  }
  
@@ -241,8 +235,6 @@ public class dbConnection {
   PreparedStatement pstmt = null;
   ResultSet resultset = null;
   ArrayList<Student> studentList = new ArrayList<>();
-  
- //studentID, status, degree, name, lastname,  birth, nationality, email, dni
 
   
   try{
@@ -280,44 +272,33 @@ public class dbConnection {
  
   Connection con = null;
   PreparedStatement pstmt = null;
-  
-
-
- ArrayList<Student> studentList = new ArrayList<>();
-  
-Student student = new Student(studentID, status,degree,name,lastname,null,nationality,null,dni);
-
-int codeDegree = 0;
-
-Degree degreeObject = Degree.getDegreeByName(degree);  // Este método devuelve un objeto Degree basado en el nombre del degree
-codeDegree = degreeObject.getCodeDegree();  // Obtener el codeDegree desde el objeto Degree
 
   
- studentList.add(student);
-  
+  Student student = new Student(studentID, status,degree,name,lastname,null,nationality,null,dni);
+
+  int codeDegree = 0;
+
+  Degree degreeObject = Degree.getDegreeByName(degree);  // Este método devuelve un objeto Degree basado en el nombre del degree
+  codeDegree = degreeObject.getCodeDegree();  // Obtener el codeDegree desde el objeto Degree
+
   
   try{
    con = dbConnection.connect();
    String query = "UPDATE student SET dni = ?, name = ?, lastname = ?, nationality = ?, status = ?, degree = ?, codeDegree = ? WHERE studentID = ?";
    pstmt = con.prepareStatement(query);
 
-   
-   for(Student s : studentList){
-      pstmt.setInt(1, s.getDni());
-      pstmt.setString(2, s.getName());
-      pstmt.setString(3, s.getLastname());
-      pstmt.setString(4, s.getNationality());
-      pstmt.setString(5, s.getStatus());
-      pstmt.setString(6, s.getDegree());
+      pstmt.setInt(1, student.getDni());
+      pstmt.setString(2, student.getName());
+      pstmt.setString(3, student.getLastname());
+      pstmt.setString(4, student.getNationality());
+      pstmt.setString(5, student.getStatus());
+      pstmt.setString(6, student.getDegree());
       pstmt.setInt(7, codeDegree);
-      pstmt.setInt(8, s.getStudentID());
+      pstmt.setInt(8, student.getStudentID());
 
       pstmt.executeUpdate();
-       
-       }
    
   }catch(SQLException e){e.printStackTrace();}
-  
 
  }
  
@@ -329,7 +310,7 @@ codeDegree = degreeObject.getCodeDegree();  // Obtener el codeDegree desde el ob
   boolean flagValidations = false;
   
 int studentID = Integer.parseInt(studentIDStr);  // Conversión correcta de String a int
-
+Student student = new Student(studentID,null,null,null,null,null,null,null,dni);
   
   try{
       
@@ -338,8 +319,8 @@ int studentID = Integer.parseInt(studentIDStr);  // Conversión correcta de Stri
        pstmt = con.prepareStatement(query);
        
        
-       pstmt.setInt(1, dni);
-       pstmt.setInt(2, studentID);
+       pstmt.setInt(1, student.getDni());
+       pstmt.setInt(2, student.getStudentID());
        resultset = pstmt.executeQuery();
        
       
@@ -356,4 +337,31 @@ int studentID = Integer.parseInt(studentIDStr);  // Conversión correcta de Stri
   }
   return flagValidations;
  }
+ 
+ public static void deleteStudent(String studentIDStr){
+  Connection con = null;
+  PreparedStatement pstmt = null;
+  
+  int studentID = Integer.parseInt(studentIDStr);
+  
+  Student student = new Student(studentID, null, null, null, null, null, null, null, 0);
+  
+  
+   try{
+      
+       con = dbConnection.connect();
+       String query = "DELETE FROM student WHERE studentID = ?";
+       pstmt = con.prepareStatement(query);            
+       pstmt.setInt(1, student.getStudentID());
+       pstmt.executeUpdate();
+       
+  }catch(SQLException e){
+  e.printStackTrace();
+  }
+
+ }
+ 
+ 
+ 
+ 
 }
