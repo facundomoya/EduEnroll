@@ -27,4 +27,18 @@ public class Degree {
 
     public Degree() {
     }
+    
+       public static Degree getDegreeByName(String degreeName) {
+        // Dependiendo del nombre, se devuelve el grado correspondiente
+        switch (degreeName) {
+            case "Electrical Engineering":
+                return new Degree("Electrical Engineering", 1);
+            case "Civil Engineering":
+                return new Degree("Civil Engineering", 2);
+            case "Mechanical Engineering":
+                return new Degree("Mechanical Engineering", 3);
+            default:
+                throw new IllegalArgumentException("Unknown degree name: " + degreeName);
+        }
+    }
 }

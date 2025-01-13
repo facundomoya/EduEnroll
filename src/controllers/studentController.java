@@ -9,7 +9,9 @@ import static models.Person.isValidBirth;
 import static models.Person.isValidDNI;
 import static models.Person.isValidEmail;
 import models.Student;
+import static models.Student.isValidStudentID;
 import static models.dbConnection.checkDNIandEmail;
+import static models.dbConnection.editStudent;
 import static models.dbConnection.newStudent;
 import static models.dbConnection.searchStudentEdit;
 import static models.dbConnection.showStudent;
@@ -54,13 +56,13 @@ public class studentController {
     if(dniStr != null && !dniStr.trim().isEmpty() && birthStr != null && !birthStr.trim().isEmpty() && !(name.equals("") || lastname.equals("") || email.equals("") || nationality.equals("") || degree.equals("..."))){
     if(isValidDNI(dniStr)){
     if(isValidBirth(birthStr)){
-        LocalDate age = LocalDate.parse(birthStr);
+        LocalDate birth = LocalDate.parse(birthStr);
         if(isValidEmail(email)){
             try{
     int dni = Integer.parseInt(dniStr);
     boolean flagValidations = checkDNIandEmail(dni,email);
     if(flagValidations == false){
-    newStudent(0, status, degree, name, lastname, age, nationality, email, dni);
+    newStudent(0, status, degree, name, lastname, birth, nationality, email, dni);
     JOptionPane.showMessageDialog(null, "The student has been successfully added", "Success", JOptionPane.INFORMATION_MESSAGE);
     showStudent();
     flag = true;
@@ -116,8 +118,12 @@ public class studentController {
     }
     
     public static void searchEditButton(){
-    int studentIDInt = Integer.parseInt(studentController.view_editStudent.getEditStudentTextField1().getText());
-    ArrayList<Student> studentList = searchStudentEdit(studentIDInt);
+    String studentIDStr = studentController.view_editStudent.getEditStudentTextField1().getText();
+  
+    if(isValidStudentID(studentIDStr)){
+    int studentID = Integer.parseInt(studentIDStr);
+     ArrayList<Student> studentList = searchStudentEdit(studentID);
+    
     if(studentList.size() == 0){
     cleanTextFieldEditStudent();
     JOptionPane.showMessageDialog(null, "No student was found with that ID", "Alert", JOptionPane.INFORMATION_MESSAGE);
@@ -129,10 +135,47 @@ public class studentController {
     studentController.view_editStudent.getEditStudentTextField5().setText(s.getNationality());
     studentController.view_editStudent.getEditStudentComboBox1().setSelectedItem(s.getStatus());
     studentController.view_editStudent.getEditStudentComboBox2().setSelectedItem(s.getDegree());   
+    }     
+    
+    }else{
+    JOptionPane.showMessageDialog(null, "The studentID is invalid", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
+   
     }
     
-    }
+    public static boolean editButton(){
+    String studentIDStr = studentController.view_editStudent.getEditStudentTextField1().getText();
+    String dniStr = studentController.view_editStudent.getEditStudentTextField2().getText();
+    String name = studentController.view_editStudent.getEditStudentTextField3().getText();
+    String lastname = studentController.view_editStudent.getEditStudentTextField4().getText();
+    String nationality = studentController.view_editStudent.getEditStudentTextField5().getText();
+    String status = (String) view_editStudent.getEditStudentComboBox1().getSelectedItem();
+    String degree = (String) view_editStudent.getEditStudentComboBox2().getSelectedItem();
     
+    boolean flag = false;
+    
+    if(dniStr != null && !dniStr.trim().isEmpty() && !(name.equals("") || lastname.equals("") || nationality.equals("") || degree.equals("...")|| status.equals("..."))){
+    if(isValidDNI(dniStr)){
+    int studentID = Integer.parseInt(studentIDStr);
+    try{
+    int dni = Integer.parseInt(dniStr);
+    boolean flagValidations = checkDNIandEmail(dni, null);
+    if(flagValidations == false){
+    editStudent(studentID, dni, name, lastname, nationality, status, degree);
+    JOptionPane.showMessageDialog(null, "The student has been successfully edited", "Success", JOptionPane.INFORMATION_MESSAGE);
+    showStudent();
+    flag = true;
+    }
+    }catch(NumberFormatException e){
+    }
+    }else{
+    JOptionPane.showMessageDialog(null, "DNI is invalid", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
+    }else{
+    JOptionPane.showMessageDialog(null, "You have to complete all fields", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
+    return flag;
+    }
     
 }
 

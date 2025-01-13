@@ -93,6 +93,11 @@ public class editStudentView extends javax.swing.JFrame {
         editStudentComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Electrical Engineering", "Civil Engineering", "Mechanical Engineering" }));
 
         editEditStudentButton.setText("Edit");
+        editEditStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editEditStudentButtonActionPerformed(evt);
+            }
+        });
 
         cancelEditStudentButton.setText("Cancel");
         cancelEditStudentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +216,12 @@ public class editStudentView extends javax.swing.JFrame {
         studentController.view_editStudent.setVisible(false);
         studentController.cleanTextFieldEditStudent();
     }//GEN-LAST:event_cancelEditStudentButtonActionPerformed
+
+    private void editEditStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEditStudentButtonActionPerformed
+        // TODO add your handling code here:
+       boolean success = studentController.editButton();
+       if(success){studentController.cleanTextFieldEditStudent();}
+    }//GEN-LAST:event_editEditStudentButtonActionPerformed
 
     /**
      * @param args the command line arguments

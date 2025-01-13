@@ -157,10 +157,12 @@ public class dbConnection {
   ResultSet resultset = null;
   boolean flagValidations = false;
   
+
+  
   try{
       
        con = dbConnection.connect();
-       String query = "SELECT s.dni, s.email FROM student s WHERE s.dni = ? OR s.email = ? ";
+       String query = "SELECT s.dni, s.email FROM student s WHERE s.dni = ? OR s.email = ?";
        pstmt = con.prepareStatement(query);
        
        
@@ -191,13 +193,13 @@ public class dbConnection {
   return flagValidations;
  }
  
- public static void newStudent(int studentID, String status, String degree, String name, String lastname, LocalDate age, String nationality, String email, int dni){
+ public static void newStudent(int studentID, String status, String degree, String name, String lastname, LocalDate birth, String nationality, String email, int dni){
   Connection con = null;
   PreparedStatement pstmt = null;
   
   ArrayList<Student> studentList = new ArrayList<>();
   
-  Student student = new Student(studentID, status,degree,name,lastname,age,nationality,email,dni);
+  Student student = new Student(studentID, status,degree,name,lastname,birth,nationality,email,dni);
   
   studentList.add(student);
   
@@ -270,5 +272,50 @@ public class dbConnection {
  
 
   return studentList;
+ }
+ 
+ public static void editStudent(int studentID, int dni, String name, String lastname, String nationality, String status, String degree){
+ 
+  Connection con = null;
+  PreparedStatement pstmt = null;
+  
+
+
+ ArrayList<Student> studentList = new ArrayList<>();
+  
+Student student = new Student(studentID, status,degree,name,lastname,null,nationality,null,dni);
+
+int codeDegree = 0;
+
+Degree degreeObject = Degree.getDegreeByName(degree);  // Este método devuelve un objeto Degree basado en el nombre del degree
+codeDegree = degreeObject.getCodeDegree();  // Obtener el codeDegree desde el objeto Degree
+
+  
+ studentList.add(student);
+  
+  
+  try{
+   con = dbConnection.connect();
+   String query = "UPDATE student SET dni = ?, name = ?, lastname = ?, nationality = ?, status = ?, degree = ?, codeDegree = ? WHERE studentID = ?";
+   pstmt = con.prepareStatement(query);
+
+   
+   for(Student s : studentList){
+      pstmt.setInt(1, s.getDni());
+      pstmt.setString(2, s.getName());
+      pstmt.setString(3, s.getLastname());
+      pstmt.setString(4, s.getNationality());
+      pstmt.setString(5, s.getStatus());
+      pstmt.setString(6, s.getDegree());
+      pstmt.setInt(7, codeDegree);
+      pstmt.setInt(8, s.getStudentID());
+
+      pstmt.executeUpdate();
+       
+       }
+   
+  }catch(SQLException e){e.printStackTrace();}
+  
+
  }
 }
