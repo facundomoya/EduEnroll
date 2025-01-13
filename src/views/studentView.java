@@ -147,7 +147,7 @@ public class studentView extends javax.swing.JFrame {
 
     private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentButtonActionPerformed
         // TODO add your handling code here:
-        studentController.addStudentButton();
+        studentController.showAddStudent();
     }//GEN-LAST:event_addStudentButtonActionPerformed
 
     private void backStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backStudentButtonActionPerformed

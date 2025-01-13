@@ -31,7 +31,7 @@ public class dbConnection {
             e.printStackTrace();
         }
         
-        return con; // Retornar la conexión
+        return con;
     }
     
     public static boolean isValidUser(String username, String password) {

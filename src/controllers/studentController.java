@@ -28,11 +28,7 @@ public class studentController {
     public static editStudentView view_editStudent = new editStudentView();
     public static deleteStudentView view_deleteStudent = new deleteStudentView();
     
-    public static void hideStudentView(){
-    view.setVisible(false);
-    }
-    
-    public static void addStudentButton() {
+    public static void showAddStudent() {
         view_addStudent.setVisible(true);
         view_addStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
         cleanTextFieldsAddStudent();
@@ -48,6 +44,20 @@ public class studentController {
     view_deleteStudent.setVisible(true);
     view_deleteStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
     cleanTextFieldDeleteStudent();
+    }
+    
+    public static void hideDeleteStudentView(){
+    view_deleteStudent.setVisible(false);
+    cleanTextFieldDeleteStudent();
+    }
+    
+    public static void hideStudentView(){
+    view.setVisible(false);
+    }
+    
+    public static void hideAddStudentView(){
+    studentController.view_addStudent.setVisible(false);
+    cleanTextFieldsAddStudent();
     }
     
     public static boolean validationStudentandAddStudent() {

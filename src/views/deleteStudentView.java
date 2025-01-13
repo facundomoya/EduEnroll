@@ -93,8 +93,7 @@ public class deleteStudentView extends javax.swing.JFrame {
 
     private void deleteStudentButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentButton2ActionPerformed
         // TODO add your handling code here:
-        studentController.view_deleteStudent.setVisible(false);
-        studentController.cleanTextFieldDeleteStudent();
+       studentController.hideDeleteStudentView();
     }//GEN-LAST:event_deleteStudentButton2ActionPerformed
 
     /**
