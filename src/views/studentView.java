@@ -48,18 +48,18 @@ public class studentView extends javax.swing.JFrame {
 
         studentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Lastname", "Date of birth", "Nacionality", "Degree", "DNI", "Status"
+                "Student ID", "Name", "Lastname", "Date of birth", "Nacionality", "Degree", "DNI", "Status"
             }
         ));
         jScrollPane1.setViewportView(studentTable);
         if (studentTable.getColumnModel().getColumnCount() > 0) {
-            studentTable.getColumnModel().getColumn(4).setPreferredWidth(110);
+            studentTable.getColumnModel().getColumn(5).setPreferredWidth(110);
         }
 
         printButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\print-icon.png")); // NOI18N

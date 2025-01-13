@@ -78,6 +78,7 @@ public class dbConnection {
     DefaultTableModel model = new DefaultTableModel();
     
     // Agregar las columnas al modelo
+    model.addColumn("Student ID");
     model.addColumn("Name");
     model.addColumn("Lastname");
     model.addColumn("Birth");
@@ -90,7 +91,7 @@ public class dbConnection {
         // Conexión a la base de datos
         con = dbConnection.connect();
         stmt = con.createStatement();
-        String query = "SELECT s.name, s.lastname, s.birth, s.nationality, s.degree, s.status, s.dni " +
+        String query = "SELECT s.studentID, s.name, s.lastname, s.birth, s.nationality, s.degree, s.status, s.dni " +
                        "FROM student s ";
         resultset = stmt.executeQuery(query);
         
@@ -101,7 +102,7 @@ public class dbConnection {
             Date sqlDate = resultset.getDate("birth");
             LocalDate birth = sqlDate != null ? sqlDate.toLocalDate() : null;
             Student student = new Student(
-                0,
+                resultset.getInt("studentID"),
                 resultset.getString("status"),
                 resultset.getString("degree"),
                 resultset.getString("name"),
@@ -116,14 +117,15 @@ public class dbConnection {
             studentList.add(student);
 
             // Crear la fila para la tabla
-            Object[] row = new Object[7];
-            row[0] = student.getName();
-            row[1] = student.getLastname();
-            row[2] = student.getBirth();
-            row[3] = student.getNationality();
-            row[4] = student.getDegree();
-            row[5] = student.getDni();
-            row[6] = student.getStatus();
+            Object[] row = new Object[8];
+            row[0] = student.getStudentID();
+            row[1] = student.getName();
+            row[2] = student.getLastname();
+            row[3] = student.getBirth();
+            row[4] = student.getNationality();
+            row[5] = student.getDegree();
+            row[6] = student.getDni();
+            row[7] = student.getStatus();
 
             // Agregar la fila al modelo de la tabla
             model.addRow(row);
@@ -132,7 +134,7 @@ public class dbConnection {
         // Asignar el modelo de datos a la JTable
         studentController.view.getStudentTable().setModel(model);
         // Cambia el tamaño de la columna degree en la tabla
-        studentController.view.getStudentTable().getColumnModel().getColumn(4).setPreferredWidth(150);
+        studentController.view.getStudentTable().getColumnModel().getColumn(5).setPreferredWidth(150);
         studentController.view.getStudentTable().revalidate();
         studentController.view.getStudentTable().repaint();
 
