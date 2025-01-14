@@ -2,6 +2,7 @@ package models;
 import controllers.studentController;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class dbConnection {
         Properties prop = new Properties();
         
         // Intentar cargar las propiedades desde el archivo config.properties
-        try (FileInputStream input = new FileInputStream("resources/config.properties")) {
+        try (InputStream input = dbConnection.class.getResourceAsStream("/resources/config.properties")) {
             prop.load(input);
             
             // Obtener las propiedades de la base de datos
@@ -34,16 +35,16 @@ public class dbConnection {
         return con;
     }
     
-    public static boolean isValidUser(String username, String password) {
+    public static boolean isValidUser(String user_name, String password) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         
-        User user = new User(username, password);
+        User user = new User(user_name, password);
         
         try {
             connection = dbConnection.connect();
-            
+
             // SQL para consultar si el usuario y la contraseña coinciden
             String query = "SELECT * FROM User WHERE BINARY user_name = ? AND BINARY password = ?";
             preparedStatement = connection.prepareStatement(query);

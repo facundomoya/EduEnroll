@@ -162,7 +162,7 @@
     <Component class="javax.swing.JButton" name="printButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\resources\images\pdf-icon.png"/>
+          <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\src\resources\images\pdf-icon.png"/>
         </Property>
       </Properties>
       <Events>
@@ -188,7 +188,7 @@
     <Component class="javax.swing.JButton" name="searchStudentButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\resources\images\search-icon.png"/>
+          <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\src\resources\images\search-icon.png"/>
         </Property>
       </Properties>
     </Component>
@@ -203,7 +203,7 @@
     <Component class="javax.swing.JButton" name="backStudentButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\resources\images\back-icon.png"/>
+          <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\src\resources\images\back-icon.png"/>
         </Property>
       </Properties>
       <Events>
