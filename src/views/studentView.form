@@ -162,7 +162,7 @@
     <Component class="javax.swing.JButton" name="printButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\resources\images\print-icon.png"/>
+          <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\resources\images\pdf-icon.png"/>
         </Property>
       </Properties>
       <Events>

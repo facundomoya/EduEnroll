@@ -62,7 +62,7 @@ public class studentView extends javax.swing.JFrame {
             studentTable.getColumnModel().getColumn(5).setPreferredWidth(110);
         }
 
-        printButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\print-icon.png")); // NOI18N
+        printButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\pdf-icon.png")); // NOI18N
         printButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printButtonActionPerformed(evt);

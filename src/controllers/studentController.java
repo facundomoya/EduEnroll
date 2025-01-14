@@ -282,7 +282,7 @@ public static void generatePdfFromStudentTable(JTable studentTable) {
 
         // Guardar el documento en un archivo seleccionado por el usuario
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Guardar como PDF");
+        fileChooser.setDialogTitle("Save as PDF");
         fileChooser.setSelectedFile(new File("students.pdf"));
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF files", "pdf"));
         
@@ -299,9 +299,9 @@ public static void generatePdfFromStudentTable(JTable studentTable) {
             
             // Guardar el documento en el archivo seleccionado
             document.save(filePath);
-            JOptionPane.showMessageDialog(null, "PDF guardado correctamente en: " + filePath);
+            JOptionPane.showMessageDialog(null, "PDF saved correctly in: " + filePath);
         } else {
-            JOptionPane.showMessageDialog(null, "Operación cancelada.");
+            JOptionPane.showMessageDialog(null, "Canceled operation.");
         }
 
         // Cerrar el documento
