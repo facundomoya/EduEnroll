@@ -54,7 +54,7 @@ public class studentView extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Student ID", "Name", "Lastname", "Date of birth", "Nacionality", "Degree", "DNI", "Status"
+                "Student ID", "Name", "Lastname", "Birth", "Nationality", "Degree", "DNI", "Status"
             }
         ));
         jScrollPane1.setViewportView(studentTable);
@@ -63,6 +63,11 @@ public class studentView extends javax.swing.JFrame {
         }
 
         printButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\resources\\images\\print-icon.png")); // NOI18N
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
 
         addStudentButton.setText("Add new student");
         addStudentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +170,11 @@ public class studentView extends javax.swing.JFrame {
         // TODO add your handling code here:
         studentController.showDeleteStudentView();
     }//GEN-LAST:event_deleteStudentButtonActionPerformed
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+        // TODO add your handling code here:
+        studentController.generatePdfFromStudentTable(studentTable);
+    }//GEN-LAST:event_printButtonActionPerformed
 
     /**
      * @param args the command line arguments

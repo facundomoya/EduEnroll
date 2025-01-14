@@ -1,10 +1,15 @@
 package controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import views.addStudentView;
 import views.studentView;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 import static models.Person.isValidBirth;
 import static models.Person.isValidDNI;
 import static models.Person.isValidEmail;
@@ -17,6 +22,11 @@ import static models.dbConnection.editStudent;
 import static models.dbConnection.newStudent;
 import static models.dbConnection.searchStudentEdit;
 import static models.dbConnection.showStudent;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import views.deleteStudentView;
 import views.editStudentView;
 
@@ -213,6 +223,95 @@ public class studentController {
     }
     }
     
+
+public static void generatePdfFromStudentTable(JTable studentTable) {
+    try {
+        // Crea el documento
+        PDDocument document = new PDDocument();
+        
+        // Crea una página A4
+        PDPage page = new PDPage(PDRectangle.A4);
+        document.addPage(page);
+        PDPageContentStream content = new PDPageContentStream(document, page);
+        
+        // Establecer fuente y tamaño
+        content.setFont(PDType1Font.HELVETICA_BOLD, 9);
+        
+        // Calcular la posición inicial para centrar el contenido
+        float margin = 50;
+        float degreeColumnWidth = 120;  // Ancho de la columna "degree"
+        float otherColumnWidth = 60;    // Ancho de las otras columnas
+        float tableWidth = (otherColumnWidth * (studentTable.getColumnCount() - 1)) + degreeColumnWidth;
+        float startX = (PDRectangle.A4.getWidth() - tableWidth) / 2;
+        float startY = PDRectangle.A4.getHeight() - margin + 25;
+
+        content.beginText();
+        content.newLineAtOffset(startX, startY);  // Posición inicial del texto (X, Y)
+
+        // Imprimir encabezados de la tabla
+        TableModel model = studentTable.getModel();  // Obtener el modelo de datos de la tabla
+        for (int col = 0; col < model.getColumnCount(); col++) {
+            content.showText(model.getColumnName(col));  // Mostrar nombre de la columna (encabezado)
+            if (col == 5) {  // Si es la columna "degree"
+                content.newLineAtOffset(degreeColumnWidth, 0);  // Ajuste de espaciado para la columna "degree"
+            } else {
+                content.newLineAtOffset(otherColumnWidth, 0);  // Ajuste de espaciado para las otras columnas
+            }
+        }
+        
+        content.newLineAtOffset(-tableWidth, -20);  // Espaciado después de los encabezados y reiniciar la posición X
+
+        // Imprimir el contenido de la tabla (filas)
+        for (int row = 0; row < model.getRowCount(); row++) {
+            content.newLineAtOffset(0, -15);  // Ajustar la posición inicial de cada fila (X, Y)
+            for (int col = 0; col < model.getColumnCount(); col++) {
+                String cellValue = model.getValueAt(row, col).toString();  // Obtener el valor de la celda
+                content.showText(cellValue);  // Mostrar el valor de la celda
+                if (col == 5) {  // Si es la columna "degree"
+                    content.newLineAtOffset(degreeColumnWidth, 0);  // Ajuste de espaciado para la columna "degree"
+                } else {
+                    content.newLineAtOffset(otherColumnWidth, 0);  // Ajuste de espaciado para las otras columnas
+                }
+            }
+            content.newLineAtOffset(-tableWidth, 0);  // Reiniciar la posición X para la siguiente fila
+        }
+        
+        // Cerrar el contenido
+        content.endText();
+        content.close();
+
+        // Guardar el documento en un archivo seleccionado por el usuario
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar como PDF");
+        fileChooser.setSelectedFile(new File("students.pdf"));
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF files", "pdf"));
+        
+        int userSelection = fileChooser.showSaveDialog(null);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            // Obtener el archivo seleccionado
+            File fileToSave = fileChooser.getSelectedFile();
+            String filePath = fileToSave.getAbsolutePath();
+            
+            // Verificar si tiene la extensión .pdf, si no agregarla
+            if (!filePath.endsWith(".pdf")) {
+                filePath += ".pdf";
+            }
+            
+            // Guardar el documento en el archivo seleccionado
+            document.save(filePath);
+            JOptionPane.showMessageDialog(null, "PDF guardado correctamente en: " + filePath);
+        } else {
+            JOptionPane.showMessageDialog(null, "Operación cancelada.");
+        }
+
+        // Cerrar el documento
+        document.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+ 
 }
 
 
