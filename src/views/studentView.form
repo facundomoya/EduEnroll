@@ -191,6 +191,9 @@
           <Image iconType="2" name="C:\Users\facun\OneDrive\Documents\NetBeansProjects\EduEnroll\src\resources\images\search-icon.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchStudentButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="deleteStudentButton">
       <Properties>

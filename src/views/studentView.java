@@ -84,6 +84,11 @@ public class studentView extends javax.swing.JFrame {
         });
 
         searchStudentButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\src\\resources\\images\\search-icon.png")); // NOI18N
+        searchStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchStudentButtonActionPerformed(evt);
+            }
+        });
 
         deleteStudentButton.setText("Delete student");
         deleteStudentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +180,12 @@ public class studentView extends javax.swing.JFrame {
         // TODO add your handling code here:
         studentController.generatePdfFromStudentTable(studentTable);
     }//GEN-LAST:event_printButtonActionPerformed
+
+    private void searchStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentButtonActionPerformed
+        // TODO add your handling code here:
+        studentController.showSearchStudentView();
+        studentController.cleanTextFieldSearchStudent();
+    }//GEN-LAST:event_searchStudentButtonActionPerformed
 
     /**
      * @param args the command line arguments

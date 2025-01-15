@@ -3,6 +3,7 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import views.addStudentView;
@@ -20,6 +21,7 @@ import static models.dbConnection.checkDNIandEmail;
 import static models.dbConnection.deleteStudent;
 import static models.dbConnection.editStudent;
 import static models.dbConnection.newStudent;
+import static models.dbConnection.searchStudent;
 import static models.dbConnection.searchStudentEdit;
 import static models.dbConnection.showStudent;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -29,6 +31,7 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import views.deleteStudentView;
 import views.editStudentView;
+import views.searchStudentView;
 
 
 public class studentController {
@@ -37,6 +40,7 @@ public class studentController {
     public static addStudentView view_addStudent = new addStudentView();
     public static editStudentView view_editStudent = new editStudentView();
     public static deleteStudentView view_deleteStudent = new deleteStudentView();
+    public static searchStudentView view_searchStudent = new searchStudentView();
     
     public static void showAddStudent() {
         view_addStudent.setVisible(true);
@@ -56,6 +60,11 @@ public class studentController {
     cleanTextFieldDeleteStudent();
     }
     
+    public static void showSearchStudentView(){
+    view_searchStudent.setVisible(true);
+    view_searchStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
+    }
+    
     public static void hideDeleteStudentView(){
     view_deleteStudent.setVisible(false);
     cleanTextFieldDeleteStudent();
@@ -68,6 +77,11 @@ public class studentController {
     public static void hideAddStudentView(){
     studentController.view_addStudent.setVisible(false);
     cleanTextFieldsAddStudent();
+    }
+    
+    public static void hideSearchStudentView(){
+    studentController.view_searchStudent.setVisible(false);
+    cleanTextFieldSearchStudent();
     }
     
     public static boolean validationStudentandAddStudent() {
@@ -147,6 +161,17 @@ public class studentController {
         studentController.view_editStudent.getEditStudentComboBox2().setSelectedIndex(0);
     }
     
+    public static void cleanTextFieldSearchStudent(){
+    studentController.view_searchStudent.getSearchStudentTextField1().setText("");
+    studentController.view_searchStudent.getSearchStudentTextField2().setText("");
+    studentController.view_searchStudent.getSearchStudentTextField3().setText("");
+    studentController.view_searchStudent.getSearchStudentTextField4().setText("");
+    studentController.view_searchStudent.getSearchStudentTextField5().setText("");
+    studentController.view_searchStudent.getSearchStudentTextField6().setText("");
+    studentController.view_searchStudent.getSearchStudentTextField7().setText("");
+    studentController.view_searchStudent.getSearchStudentTextField8().setText("");
+    }
+    
     public static void cleanTextFieldDeleteStudent(){
     studentController.view_deleteStudent.getDeleteStudentTextField1().setText("");
     }
@@ -222,7 +247,6 @@ public class studentController {
     JOptionPane.showMessageDialog(null, "StudentID is invalid or doesn't exist.", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
     }
-    
 
 public static void generatePdfFromStudentTable(JTable studentTable) {
     try {
@@ -311,7 +335,27 @@ public static void generatePdfFromStudentTable(JTable studentTable) {
     }
 }
 
- 
+public static void loupeButton(){
+String studentIDStr = studentController.view_searchStudent.getSearchStudentTextField1().getText();
+
+
+if(isValidStudentID(studentIDStr)){
+ArrayList<Student> studentList = searchStudent(studentIDStr);
+
+  for(Student s : studentList){
+  studentController.view_searchStudent.getSearchStudentTextField2().setText(s.getName());
+  studentController.view_searchStudent.getSearchStudentTextField3().setText(s.getLastname());
+  studentController.view_searchStudent.getSearchStudentTextField4().setText(String.valueOf(s.getDni()));
+  studentController.view_searchStudent.getSearchStudentTextField5().setText(s.getEmail());
+  studentController.view_searchStudent.getSearchStudentTextField6().setText(s.getBirth().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+  studentController.view_searchStudent.getSearchStudentTextField7().setText(s.getNationality());
+  studentController.view_searchStudent.getSearchStudentTextField8().setText(s.getDegree());
+  }
+}else{
+ JOptionPane.showMessageDialog(null, "Invalid studentID", "Alert", JOptionPane.INFORMATION_MESSAGE);
+}
+} 
+
 }
 
 

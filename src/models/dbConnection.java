@@ -361,4 +361,55 @@ Student student = new Student(studentID,null,null,null,null,null,null,null,dni);
   }
 
  }
+ 
+ public static ArrayList<Student> searchStudent(String studentIDStr){
+  Connection con = null;
+  PreparedStatement pstmt = null;
+  ResultSet resultset = null;
+  
+  ArrayList<Student> studentList = new ArrayList<>();
+  
+
+  
+  try{
+      
+  int studentID = Integer.parseInt(studentIDStr);
+  con = dbConnection.connect();
+  String query = "SELECT s.name, s.lastname, s.dni, s.email, s.birth, s.nationality, s.degree FROM student s WHERE s.studentID = ?";
+  pstmt = con.prepareStatement(query); 
+  pstmt.setInt(1, studentID);
+  resultset = pstmt.executeQuery();
+  
+
+
+   while (resultset.next()) {
+        Date sqlDate = resultset.getDate("birth");
+        LocalDate birth = sqlDate != null ? sqlDate.toLocalDate() : null;      
+            Student student = new Student(
+                studentID,
+                null,
+                resultset.getString("degree"),
+                resultset.getString("name"),
+                resultset.getString("lastname"),
+                birth,
+                resultset.getString("nationality"),
+                resultset.getString("email"),
+                resultset.getInt("dni")
+            );
+
+        
+            studentList.add(student);
+
+        }
+
+   if(studentList.size() == 0){
+     JOptionPane.showMessageDialog(null, "studentId doesn't exist.", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
+  
+  }catch(SQLException e){e.printStackTrace();}
+  
+  return studentList;
+ }
 }
+
+       
