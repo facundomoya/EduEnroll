@@ -5,6 +5,7 @@
 package views;
 
 import controllers.menuController;
+import controllers.studentController;
 import javax.accessibility.AccessibleContext;
 import javax.swing.JRootPane;
 
@@ -33,13 +34,13 @@ public class menuView extends javax.swing.JFrame {
 
         menuLabel1 = new javax.swing.JLabel();
         menuLabel2 = new javax.swing.JLabel();
-        menuLabel3 = new javax.swing.JLabel();
-        menuLabel4 = new javax.swing.JLabel();
-        menuLabel5 = new javax.swing.JLabel();
-        menuLabel6 = new javax.swing.JLabel();
         exitButton = new javax.swing.JButton();
-        menuLabel7 = new javax.swing.JLabel();
-        menuLabel8 = new javax.swing.JLabel();
+        menuStudentButton = new javax.swing.JButton();
+        menuProfessorButton = new javax.swing.JButton();
+        menuCourseButton = new javax.swing.JButton();
+        menuDegreeButton = new javax.swing.JButton();
+        menuChangePasswordButton = new javax.swing.JButton();
+        menuAddUserButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,27 +48,6 @@ public class menuView extends javax.swing.JFrame {
         menuLabel1.setText("MENU");
 
         menuLabel2.setText("jLabel2");
-
-        menuLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        menuLabel3.setForeground(new java.awt.Color(0, 0, 255));
-        menuLabel3.setText("o Student");
-        menuLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuLabel3MouseClicked(evt);
-            }
-        });
-
-        menuLabel4.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        menuLabel4.setForeground(new java.awt.Color(0, 0, 255));
-        menuLabel4.setText("o Professor");
-
-        menuLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        menuLabel5.setForeground(new java.awt.Color(0, 0, 255));
-        menuLabel5.setText("o Change password");
-
-        menuLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        menuLabel6.setForeground(new java.awt.Color(0, 0, 255));
-        menuLabel6.setText("o Degree");
 
         exitButton.setText("Logout");
         exitButton.setName("exitButton"); // NOI18N
@@ -77,37 +57,58 @@ public class menuView extends javax.swing.JFrame {
             }
         });
 
-        menuLabel7.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        menuLabel7.setForeground(new java.awt.Color(0, 0, 255));
-        menuLabel7.setText("o Course");
+        menuStudentButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuStudentButton.setText("Student");
+        menuStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuStudentButtonActionPerformed(evt);
+            }
+        });
 
-        menuLabel8.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        menuLabel8.setForeground(new java.awt.Color(0, 0, 255));
-        menuLabel8.setText("o Add admin user");
+        menuProfessorButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuProfessorButton.setText("Professor");
+
+        menuCourseButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuCourseButton.setText("Course");
+
+        menuDegreeButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuDegreeButton.setText("Degree");
+
+        menuChangePasswordButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuChangePasswordButton.setText("Change password");
+
+        menuAddUserButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuAddUserButton.setText("Add user");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(menuLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addComponent(menuLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(exitButton))
-                .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+                .addGap(158, 158, 158)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menuLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addComponent(menuLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(86, 86, 86)
+                                .addComponent(menuLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(exitButton)))
+                        .addGap(26, 26, 26))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(menuDegreeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(169, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(menuStudentButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(menuAddUserButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(menuChangePasswordButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                            .addComponent(menuCourseButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                            .addComponent(menuProfessorButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,21 +116,25 @@ public class menuView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(menuLabel1)
                     .addComponent(menuLabel2))
-                .addGap(12, 12, 12)
-                .addComponent(menuLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(19, 19, 19))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exitButton)
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(menuStudentButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(menuProfessorButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(menuCourseButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(menuDegreeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(menuChangePasswordButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(menuAddUserButton)
+                        .addContainerGap(52, Short.MAX_VALUE))))
         );
 
         pack();
@@ -140,10 +145,10 @@ public class menuView extends javax.swing.JFrame {
         menuController.exitButton();
     }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void menuLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLabel3MouseClicked
+    private void menuStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuStudentButtonActionPerformed
         // TODO add your handling code here:
-        menuController.studentClick();
-    }//GEN-LAST:event_menuLabel3MouseClicked
+        studentController.showStudentView();
+    }//GEN-LAST:event_menuStudentButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,22 +189,46 @@ public class menuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
+    private javax.swing.JButton menuAddUserButton;
+    private javax.swing.JButton menuChangePasswordButton;
+    private javax.swing.JButton menuCourseButton;
+    private javax.swing.JButton menuDegreeButton;
     private javax.swing.JLabel menuLabel1;
     private javax.swing.JLabel menuLabel2;
-    private javax.swing.JLabel menuLabel3;
-    private javax.swing.JLabel menuLabel4;
-    private javax.swing.JLabel menuLabel5;
-    private javax.swing.JLabel menuLabel6;
-    private javax.swing.JLabel menuLabel7;
-    private javax.swing.JLabel menuLabel8;
+    private javax.swing.JButton menuProfessorButton;
+    private javax.swing.JButton menuStudentButton;
     // End of variables declaration//GEN-END:variables
 
-    public javax.swing.JButton getjButton2() {
+    public javax.swing.JButton getExitButton() {
         return exitButton;
     }
 
-    public void setjButton2(javax.swing.JButton jButton2) {
-        this.exitButton = jButton2;
+    public void setExitButton(javax.swing.JButton exitButton) {
+        this.exitButton = exitButton;
+    }
+
+    public javax.swing.JButton getMenuChangePasswordButton() {
+        return menuChangePasswordButton;
+    }
+
+    public void setMenuChangePasswordButton(javax.swing.JButton menuChangePasswordButton) {
+        this.menuChangePasswordButton = menuChangePasswordButton;
+    }
+
+    public javax.swing.JButton getMenuCourseButton() {
+        return menuCourseButton;
+    }
+
+    public void setMenuCourseButton(javax.swing.JButton menuCourseButton) {
+        this.menuCourseButton = menuCourseButton;
+    }
+
+    public javax.swing.JButton getMenuDegreeButton() {
+        return menuDegreeButton;
+    }
+
+    public void setMenuDegreeButton(javax.swing.JButton menuDegreeButton) {
+        this.menuDegreeButton = menuDegreeButton;
     }
 
     public javax.swing.JLabel getMenuLabel1() {
@@ -218,59 +247,23 @@ public class menuView extends javax.swing.JFrame {
         this.menuLabel2 = menuLabel2;
     }
 
-    public javax.swing.JLabel getMenuLabel3() {
-        return menuLabel3;
+    public javax.swing.JButton getMenuProfessorButton() {
+        return menuProfessorButton;
     }
 
-    public void setMenuLabel3(javax.swing.JLabel menuLabel3) {
-        this.menuLabel3 = menuLabel3;
+    public javax.swing.JButton getMenuStudentButton() {
+        return menuStudentButton;
     }
 
-    public javax.swing.JLabel getMenuLabel4() {
-        return menuLabel4;
+    public void setMenuStudentButton(javax.swing.JButton menuStudentButton) {
+        this.menuStudentButton = menuStudentButton;
     }
 
-    public void setMenuLabel4(javax.swing.JLabel menuLabel4) {
-        this.menuLabel4 = menuLabel4;
+    public javax.swing.JButton getMenuAddUserButton() {
+        return menuAddUserButton;
     }
 
-    public javax.swing.JLabel getMenuLabel5() {
-        return menuLabel5;
-    }
-
-    public void setMenuLabel5(javax.swing.JLabel menuLabel5) {
-        this.menuLabel5 = menuLabel5;
-    }
-
-    public javax.swing.JLabel getMenuLabel6() {
-        return menuLabel6;
-    }
-
-    public void setMenuLabel6(javax.swing.JLabel menuLabel6) {
-        this.menuLabel6 = menuLabel6;
-    }
-
-    public javax.swing.JLabel getMenuLabel7() {
-        return menuLabel7;
-    }
-
-    public void setMenuLabel7(javax.swing.JLabel menuLabel7) {
-        this.menuLabel7 = menuLabel7;
-    }   
-
-    public javax.swing.JButton getExitButton() {
-        return exitButton;
-    }
-
-    public void setExitButton(javax.swing.JButton exitButton) {
-        this.exitButton = exitButton;
-    }
-
-    public javax.swing.JLabel getMenuLabel8() {
-        return menuLabel8;
-    }
-
-    public void setMenuLabel8(javax.swing.JLabel menuLabel8) {
-        this.menuLabel8 = menuLabel8;
+    public void setMenuAddUserButton(javax.swing.JButton menuAddUserButton) {
+        this.menuAddUserButton = menuAddUserButton;
     }
 }

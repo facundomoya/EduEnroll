@@ -42,6 +42,12 @@ public class studentController {
     public static deleteStudentView view_deleteStudent = new deleteStudentView();
     public static searchStudentView view_searchStudent = new searchStudentView();
     
+    public static void showStudentView(){
+    view.setVisible(true);
+    view.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
+    showStudent();
+    }
+    
     public static void showAddStudent() {
         view_addStudent.setVisible(true);
         view_addStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);

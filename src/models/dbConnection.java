@@ -35,40 +35,50 @@ public class dbConnection {
         return con;
     }
     
-    public static boolean isValidUser(String user_name, String password) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        
-        User user = new User(user_name, password);
-        
-        try {
-            connection = dbConnection.connect();
+ public static User isValidUser(String user_name, String password) {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
 
-            // SQL para consultar si el usuario y la contraseña coinciden
-            String query = "SELECT * FROM User WHERE BINARY user_name = ? AND BINARY password = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, user.getUser_name());
-            preparedStatement.setString(2, user.getPassword());
-            
-            resultSet = preparedStatement.executeQuery();
-            
+    // Inicializa el objeto User
+    User user = new User(user_name, password, 0);
+
+    try {
+        connection = dbConnection.connect();
+
+        // SQL para consultar si el usuario y la contraseña coinciden
+        String query = "SELECT * FROM User WHERE BINARY user_name = ? AND BINARY password = ?";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, user.getUser_name());
+        preparedStatement.setString(2, user.getPassword());
+
+        resultSet = preparedStatement.executeQuery();
+
+        // Si la consulta devuelve un registro, asignamos el user_type
+        if (resultSet.next()) {
+            int user_type = resultSet.getInt("user_type");  // Asume que 'user_type' es una columna en la tabla 'User'
+            user.setUser_type(user_type);  // Establece el valor de user_type en el objeto User
             // Si la consulta devuelve un registro, el usuario es válido
-            return resultSet.next(); // Si hay algún registro, el login es válido
+            return user; // El usuario es válido
+        } else {
+            return null; // No se encontró el usuario
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+    } finally {
+        // Cerrar recursos
+        try {
+            if (resultSet != null) resultSet.close();
+            if (preparedStatement != null) preparedStatement.close();
+            if (connection != null) connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
-        } finally {
-            // Cerrar recursos
-            try {
-                if (resultSet != null) resultSet.close();
-                if (preparedStatement != null) preparedStatement.close();
-                if (connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
+}
+
+    
     
  public static void showStudent() {
     Connection con = null;
