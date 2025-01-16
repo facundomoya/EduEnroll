@@ -1,5 +1,6 @@
 package controllers;
 import javax.swing.JOptionPane;
+import static models.dbConnection.closeConnection;
 import static models.dbConnection.showStudent;
 import views.menuView;
 
@@ -21,6 +22,7 @@ public class menuController {
     if(option == 0){
     loginController.view.setVisible(true);
     view.setVisible(false);
+    closeConnection();
     }
     }
     

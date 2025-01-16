@@ -1,12 +1,10 @@
 package controllers;
-import java.awt.event.MouseAdapter;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import models.User;
+import static models.dbConnection.getConnection;
 import static models.dbConnection.isValidUser;
 import views.loginView;
-import views.menuView;
 
 public class loginController {
 
@@ -31,15 +29,18 @@ public class loginController {
             menuLabel2.setText(user_name);
             view.getUserTextField1().setText("");
             view.getPassTextField().setText("");
+            getConnection();
             }else{
             menuController.view.getMenuStudentButton().setEnabled(false);
             menuController.view.getMenuCourseButton().setEnabled(false);
             menuController.view.getMenuDegreeButton().setEnabled(false);
             menuController.view.getMenuAddUserButton().setEnabled(false);
+            getConnection();
             }           
-        } else {
+        }else {
             // Si no es válido, mostrar un mensaje de error
-            JOptionPane.showMessageDialog(null, "Incorrect username or password", "Alert", JOptionPane.INFORMATION_MESSAGE);
+            getConnection();
+            JOptionPane.showMessageDialog(null, "Incorrect username or password", "Alert", JOptionPane.INFORMATION_MESSAGE);         
         }
     }
 }

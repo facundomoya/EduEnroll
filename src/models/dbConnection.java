@@ -1,6 +1,5 @@
 package models;
 import controllers.studentController;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -12,31 +11,48 @@ import javax.swing.table.DefaultTableModel;
 
 public class dbConnection {
     
+     private static Connection con = null;
+
+    // Obtener la conexión única para toda la aplicación
+    public static Connection getConnection() {
+        if (con == null) {
+            con = connect(); // Si no existe, crea una nueva conexión
+        }
+        return con;
+    }
+
+    // Crear una nueva conexión si no existe
     public static Connection connect() {
         Connection con = null;
         Properties prop = new Properties();
-        
-        // Intentar cargar las propiedades desde el archivo config.properties
+
         try (InputStream input = dbConnection.class.getResourceAsStream("/resources/config.properties")) {
             prop.load(input);
-            
-            // Obtener las propiedades de la base de datos
             String url = prop.getProperty("db.url");
             String user = prop.getProperty("db.user");
             String pass = prop.getProperty("db.pass");
-            
-            // Intentar establecer la conexión con la base de datos
+
             con = DriverManager.getConnection(url, user, pass);
+            
         } catch (IOException | SQLException e) {
-            // Imprimir el error en caso de que algo falle
             e.printStackTrace();
         }
-        
         return con;
+    }
+
+    // Cerrar la conexión cuando ya no se necesite
+    public static void closeConnection() {
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
  public static User isValidUser(String user_name, String password) {
-    Connection connection = null;
+    Connection con = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
@@ -44,11 +60,11 @@ public class dbConnection {
     User user = new User(user_name, password, 0);
 
     try {
-        connection = dbConnection.connect();
+        con = dbConnection.getConnection();
 
         // SQL para consultar si el usuario y la contraseña coinciden
         String query = "SELECT * FROM User WHERE BINARY user_name = ? AND BINARY password = ?";
-        preparedStatement = connection.prepareStatement(query);
+        preparedStatement = con.prepareStatement(query);
         preparedStatement.setString(1, user.getUser_name());
         preparedStatement.setString(2, user.getPassword());
 
@@ -71,15 +87,13 @@ public class dbConnection {
         try {
             if (resultSet != null) resultSet.close();
             if (preparedStatement != null) preparedStatement.close();
-            if (connection != null) connection.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 }
 
-    
-    
  public static void showStudent() {
     Connection con = null;
     Statement stmt = null;
@@ -102,13 +116,11 @@ public class dbConnection {
 
     try {
         // Conexión a la base de datos
-        con = dbConnection.connect();
+        con = dbConnection.getConnection();
         stmt = con.createStatement();
         String query = "SELECT s.studentID, s.name, s.lastname, s.birth, s.nationality, s.degree, s.status, s.dni " +
                        "FROM student s ";
         resultset = stmt.executeQuery(query);
-        
-         
 
         // Recorrer el ResultSet y agregar los datos a las listas
         while (resultset.next()) {
@@ -126,7 +138,6 @@ public class dbConnection {
                 resultset.getInt("dni")            
             );
 
-        
             studentList.add(student);
 
             // Crear la fila para la tabla
@@ -150,16 +161,14 @@ public class dbConnection {
         studentController.view.getStudentTable().getColumnModel().getColumn(5).setPreferredWidth(150);
         studentController.view.getStudentTable().revalidate();
         studentController.view.getStudentTable().repaint();
-
-
+        
     } catch (SQLException e) {
         e.printStackTrace();
     } finally {
         // Cerrar los recursos
         try {
             if (resultset != null) resultset.close();
-            if (stmt != null) stmt.close();
-            if (con != null) con.close();
+            if (stmt != null) stmt.close();           
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -167,26 +176,20 @@ public class dbConnection {
 }
  
  public static boolean checkDNIandEmail(int dni, String email){
-  Connection con = null;
-  PreparedStatement pstmt = null;
-  ResultSet resultset = null;
-  boolean flagValidations = false;
-  
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet resultset = null;
+    boolean flagValidations = false;
 
-  
-  try{
-      
-       con = dbConnection.connect();
+    try{
+       con = dbConnection.getConnection();
        String query = "SELECT s.dni, s.email FROM student s WHERE s.dni = ? OR s.email = ?";
        pstmt = con.prepareStatement(query);
-       
-       
+      
        pstmt.setInt(1, dni);
        pstmt.setString(2, email);
        resultset = pstmt.executeQuery();
-       
-      
-       
+
        if(resultset.next()){
        int db_dni = resultset.getInt("dni");
        String db_email = resultset.getString("email");
@@ -202,29 +205,28 @@ public class dbConnection {
         flagValidations = true;
        }
        }
-  }catch(SQLException e){
-  e.printStackTrace();
-  }
-  return flagValidations;
+    }catch(SQLException e){
+    e.printStackTrace();
+    }
+    return flagValidations;
  }
  
  public static void newStudent(int studentID, String status, String degree, String name, String lastname, LocalDate birth, String nationality, String email, int dni){
-  Connection con = null;
-  PreparedStatement pstmt = null;
+    Connection con = null;
+    PreparedStatement pstmt = null;
 
-  Student student = new Student(studentID, status,degree,name,lastname,birth,nationality,email,dni);
-  
-  
-  try{
-       con = dbConnection.connect();
+    Student student = new Student(studentID, status,degree,name,lastname,birth,nationality,email,dni);
+
+    try{
+       con = dbConnection.getConnection();
        String query = "INSERT INTO student(status, degree, name, lastname, birth, nationality, email, dni, codeDegree) VALUES (?,?,?,?,?,?,?,?, \n" +
-"CASE\n" +
-"        WHEN degree = 'Electrical Engineering' THEN 1\n" +
-"        WHEN degree = 'Civil Engineering' THEN 2\n" +
-"        WHEN degree = 'Mechanical Engineering' THEN 3\n" +
-"        ELSE 0\n" +
-"    END\n" +
-")";
+       "CASE\n" +
+       "        WHEN degree = 'Electrical Engineering' THEN 1\n" +
+       "        WHEN degree = 'Civil Engineering' THEN 2\n" +
+       "        WHEN degree = 'Mechanical Engineering' THEN 3\n" +
+       "        ELSE 0\n" +
+       "    END\n" +
+       ")";
        pstmt = con.prepareStatement(query);
  
        pstmt.setString(1, student.getStatus());
@@ -238,24 +240,23 @@ public class dbConnection {
 
        pstmt.executeUpdate();
        
-  }catch(SQLException e){e.printStackTrace();}
+    }catch(SQLException e){e.printStackTrace();}
  }
  
  public static ArrayList<Student> searchStudentEdit(int studentID){
- Connection con = null;
-  PreparedStatement pstmt = null;
-  ResultSet resultset = null;
-  ArrayList<Student> studentList = new ArrayList<>();
-
-  
-  try{
-   con = dbConnection.connect();
-   String query = "SELECT s.dni, s.name, s.lastname, s.nationality, s.status, s.degree FROM student s WHERE s.studentID = ?";
-   pstmt = con.prepareStatement(query);
-   pstmt.setInt(1, studentID);
-   resultset = pstmt.executeQuery(); 
+   Connection con = null;
+   PreparedStatement pstmt = null;
+   ResultSet resultset = null;
+   ArrayList<Student> studentList = new ArrayList<>();
+ 
+   try{
+    con = dbConnection.getConnection();
+    String query = "SELECT s.dni, s.name, s.lastname, s.nationality, s.status, s.degree FROM student s WHERE s.studentID = ?";
+    pstmt = con.prepareStatement(query);
+    pstmt.setInt(1, studentID);
+    resultset = pstmt.executeQuery(); 
    
-     while (resultset.next()) {
+    while (resultset.next()) {
             Student student = new Student(
                 studentID,
                 resultset.getString("status"),
@@ -269,14 +270,11 @@ public class dbConnection {
             );
             
              studentList.add(student);
-  }  
+    }  
 
-    
- }catch(SQLException e){e.printStackTrace();}
-  
- 
-
-  return studentList;
+    }catch(SQLException e){e.printStackTrace();}
+   
+     return studentList;
  }
  
  public static void editStudent(int studentID, int dni, String name, String lastname, String nationality, String status, String degree){
@@ -284,7 +282,6 @@ public class dbConnection {
   Connection con = null;
   PreparedStatement pstmt = null;
 
-  
   Student student = new Student(studentID, status,degree,name,lastname,null,nationality,null,dni);
 
   int codeDegree = 0;
@@ -292,9 +289,8 @@ public class dbConnection {
   Degree degreeObject = Degree.getDegreeByName(degree);  // Este método devuelve un objeto Degree basado en el nombre del degree
   codeDegree = degreeObject.getCodeDegree();  // Obtener el codeDegree desde el objeto Degree
 
-  
   try{
-   con = dbConnection.connect();
+   con = dbConnection.getConnection();
    String query = "UPDATE student SET dni = ?, name = ?, lastname = ?, nationality = ?, status = ?, degree = ?, codeDegree = ? WHERE studentID = ?";
    pstmt = con.prepareStatement(query);
 
@@ -310,37 +306,33 @@ public class dbConnection {
       pstmt.executeUpdate();
    
   }catch(SQLException e){e.printStackTrace();}
-
  }
  
  public static boolean checkDNIStudentEdit(String studentIDStr, int dni){
  
- Connection con = null;
+  Connection con = null;
   PreparedStatement pstmt = null;
   ResultSet resultset = null;
   boolean flagValidations = false;
   
-int studentID = Integer.parseInt(studentIDStr);  // Conversión correcta de String a int
-Student student = new Student(studentID,null,null,null,null,null,null,null,dni);
+  int studentID = Integer.parseInt(studentIDStr);  // Conversión correcta de String a int
+  Student student = new Student(studentID,null,null,null,null,null,null,null,dni);
   
   try{
       
-       con = dbConnection.connect();
-       String query = "SELECT s.dni FROM student s WHERE s.dni = ? AND s.studentID != ?";
-       pstmt = con.prepareStatement(query);
-       
-       
-       pstmt.setInt(1, student.getDni());
-       pstmt.setInt(2, student.getStudentID());
-       resultset = pstmt.executeQuery();
-       
-      
-       
-       if(resultset.next()){
-       int db_dni = resultset.getInt("dni");
-       if(db_dni == dni){
-        JOptionPane.showMessageDialog(null, "Incorrect dni, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
-        flagValidations = true;
+      con = dbConnection.getConnection();
+      String query = "SELECT s.dni FROM student s WHERE s.dni = ? AND s.studentID != ?";
+      pstmt = con.prepareStatement(query);
+
+      pstmt.setInt(1, student.getDni());
+      pstmt.setInt(2, student.getStudentID());
+      resultset = pstmt.executeQuery();
+
+      if(resultset.next()){
+      int db_dni = resultset.getInt("dni");
+      if(db_dni == dni){
+       JOptionPane.showMessageDialog(null, "Incorrect dni, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
+       flagValidations = true;
        }
        }
   }catch(SQLException e){
@@ -350,17 +342,16 @@ Student student = new Student(studentID,null,null,null,null,null,null,null,dni);
  }
  
  public static void deleteStudent(String studentIDStr){
-  Connection con = null;
-  PreparedStatement pstmt = null;
+   Connection con = null;
+   PreparedStatement pstmt = null;
   
-  int studentID = Integer.parseInt(studentIDStr);
+   int studentID = Integer.parseInt(studentIDStr);
   
-  Student student = new Student(studentID, null, null, null, null, null, null, null, 0);
-  
-  
+   Student student = new Student(studentID, null, null, null, null, null, null, null, 0);
+
    try{
       
-       con = dbConnection.connect();
+       con = dbConnection.getConnection();
        String query = "DELETE FROM student WHERE studentID = ?";
        pstmt = con.prepareStatement(query);            
        pstmt.setInt(1, student.getStudentID());
@@ -369,7 +360,6 @@ Student student = new Student(studentID,null,null,null,null,null,null,null,dni);
   }catch(SQLException e){
   e.printStackTrace();
   }
-
  }
  
  public static ArrayList<Student> searchStudent(String studentIDStr){
@@ -378,19 +368,15 @@ Student student = new Student(studentID,null,null,null,null,null,null,null,dni);
   ResultSet resultset = null;
   
   ArrayList<Student> studentList = new ArrayList<>();
-  
 
-  
   try{
       
   int studentID = Integer.parseInt(studentIDStr);
-  con = dbConnection.connect();
+  con = dbConnection.getConnection();
   String query = "SELECT s.name, s.lastname, s.dni, s.email, s.birth, s.nationality, s.degree FROM student s WHERE s.studentID = ?";
   pstmt = con.prepareStatement(query); 
   pstmt.setInt(1, studentID);
   resultset = pstmt.executeQuery();
-  
-
 
    while (resultset.next()) {
         Date sqlDate = resultset.getDate("birth");
@@ -407,12 +393,11 @@ Student student = new Student(studentID,null,null,null,null,null,null,null,dni);
                 resultset.getInt("dni")
             );
 
-        
             studentList.add(student);
 
         }
 
-   if(studentList.size() == 0){
+    if(studentList.size() == 0){
      JOptionPane.showMessageDialog(null, "studentId doesn't exist.", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
   

@@ -45,13 +45,13 @@ public class studentController {
     public static void showStudentView(){
     view.setVisible(true);
     view.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
-    showStudent();
+    showStudent();  
     }
     
     public static void showAddStudent() {
-        view_addStudent.setVisible(true);
-        view_addStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
-        cleanTextFieldsAddStudent();
+    view_addStudent.setVisible(true);
+    view_addStudent.setDefaultCloseOperation(addStudentView.DISPOSE_ON_CLOSE);
+    cleanTextFieldsAddStudent();
     }
     
     public static void showEditStudentView(){
@@ -102,7 +102,6 @@ public class studentController {
     
     boolean flag = false;
     
-    
     if(dniStr != null && !dniStr.trim().isEmpty() && birthStr != null && !birthStr.trim().isEmpty() && !(name.equals("") || lastname.equals("") || email.equals("") || nationality.equals("") || degree.equals("..."))){
     if(isValidDNI(dniStr)){
     if(isValidBirth(birthStr)){
@@ -145,26 +144,26 @@ public class studentController {
     }
     
     public static void cleanTextFieldEditStudent(){
-        studentController.view_editStudent.getEditStudentLabel2().setEnabled(false);
-        studentController.view_editStudent.getEditStudentLabel3().setEnabled(false);
-        studentController.view_editStudent.getEditStudentLabel4().setEnabled(false);
-        studentController.view_editStudent.getEditStudentLabel5().setEnabled(false);
-        studentController.view_editStudent.getEditStudentLabel6().setEnabled(false);
-        studentController.view_editStudent.getEditStudentLabel7().setEnabled(false);
-        studentController.view_editStudent.getEditStudentTextField2().setEnabled(false);
-        studentController.view_editStudent.getEditStudentTextField3().setEnabled(false);
-        studentController.view_editStudent.getEditStudentTextField4().setEnabled(false);
-        studentController.view_editStudent.getEditStudentTextField5().setEnabled(false);
-        studentController.view_editStudent.getEditStudentComboBox1().setEnabled(false);
-        studentController.view_editStudent.getEditStudentComboBox2().setEnabled(false);
-        studentController.view_editStudent.getEditEditStudentButton().setEnabled(false);
-        studentController.view_editStudent.getEditStudentTextField1().setText("");
-        studentController.view_editStudent.getEditStudentTextField2().setText("");
-        studentController.view_editStudent.getEditStudentTextField3().setText("");
-        studentController.view_editStudent.getEditStudentTextField4().setText("");
-        studentController.view_editStudent.getEditStudentTextField5().setText("");
-        studentController.view_editStudent.getEditStudentComboBox1().setSelectedIndex(0);
-        studentController.view_editStudent.getEditStudentComboBox2().setSelectedIndex(0);
+    studentController.view_editStudent.getEditStudentLabel2().setEnabled(false);
+    studentController.view_editStudent.getEditStudentLabel3().setEnabled(false);
+    studentController.view_editStudent.getEditStudentLabel4().setEnabled(false);
+    studentController.view_editStudent.getEditStudentLabel5().setEnabled(false);
+    studentController.view_editStudent.getEditStudentLabel6().setEnabled(false);
+    studentController.view_editStudent.getEditStudentLabel7().setEnabled(false);
+    studentController.view_editStudent.getEditStudentTextField2().setEnabled(false);
+    studentController.view_editStudent.getEditStudentTextField3().setEnabled(false);
+    studentController.view_editStudent.getEditStudentTextField4().setEnabled(false);
+    studentController.view_editStudent.getEditStudentTextField5().setEnabled(false);
+    studentController.view_editStudent.getEditStudentComboBox1().setEnabled(false);
+    studentController.view_editStudent.getEditStudentComboBox2().setEnabled(false);
+    studentController.view_editStudent.getEditEditStudentButton().setEnabled(false);
+    studentController.view_editStudent.getEditStudentTextField1().setText("");
+    studentController.view_editStudent.getEditStudentTextField2().setText("");
+    studentController.view_editStudent.getEditStudentTextField3().setText("");
+    studentController.view_editStudent.getEditStudentTextField4().setText("");
+    studentController.view_editStudent.getEditStudentTextField5().setText("");
+    studentController.view_editStudent.getEditStudentComboBox1().setSelectedIndex(0);
+    studentController.view_editStudent.getEditStudentComboBox2().setSelectedIndex(0);
     }
     
     public static void cleanTextFieldSearchStudent(){
@@ -254,7 +253,7 @@ public class studentController {
     }
     }
 
-public static void generatePdfFromStudentTable(JTable studentTable) {
+    public static void generatePdfFromStudentTable(JTable studentTable) {
     try {
         // Crea el documento
         PDDocument document = new PDDocument();
@@ -339,29 +338,26 @@ public static void generatePdfFromStudentTable(JTable studentTable) {
     } catch (IOException e) {
         e.printStackTrace();
     }
+    }
+
+    public static void loupeButton(){
+    String studentIDStr = studentController.view_searchStudent.getSearchStudentTextField1().getText();
+
+
+    if(isValidStudentID(studentIDStr)){
+    ArrayList<Student> studentList = searchStudent(studentIDStr);
+
+    for(Student s : studentList){
+    studentController.view_searchStudent.getSearchStudentTextField2().setText(s.getName());
+    studentController.view_searchStudent.getSearchStudentTextField3().setText(s.getLastname());
+    studentController.view_searchStudent.getSearchStudentTextField4().setText(String.valueOf(s.getDni()));
+    studentController.view_searchStudent.getSearchStudentTextField5().setText(s.getEmail());
+    studentController.view_searchStudent.getSearchStudentTextField6().setText(s.getBirth().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+    studentController.view_searchStudent.getSearchStudentTextField7().setText(s.getNationality());
+    studentController.view_searchStudent.getSearchStudentTextField8().setText(s.getDegree());
+    }
+    }else{
+    JOptionPane.showMessageDialog(null, "Invalid studentID", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
+    } 
 }
-
-public static void loupeButton(){
-String studentIDStr = studentController.view_searchStudent.getSearchStudentTextField1().getText();
-
-
-if(isValidStudentID(studentIDStr)){
-ArrayList<Student> studentList = searchStudent(studentIDStr);
-
-  for(Student s : studentList){
-  studentController.view_searchStudent.getSearchStudentTextField2().setText(s.getName());
-  studentController.view_searchStudent.getSearchStudentTextField3().setText(s.getLastname());
-  studentController.view_searchStudent.getSearchStudentTextField4().setText(String.valueOf(s.getDni()));
-  studentController.view_searchStudent.getSearchStudentTextField5().setText(s.getEmail());
-  studentController.view_searchStudent.getSearchStudentTextField6().setText(s.getBirth().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
-  studentController.view_searchStudent.getSearchStudentTextField7().setText(s.getNationality());
-  studentController.view_searchStudent.getSearchStudentTextField8().setText(s.getDegree());
-  }
-}else{
- JOptionPane.showMessageDialog(null, "Invalid studentID", "Alert", JOptionPane.INFORMATION_MESSAGE);
-}
-} 
-
-}
-
-
