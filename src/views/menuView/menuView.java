@@ -4,6 +4,7 @@
  */
 package views;
 
+import controllers.addUserController;
 import controllers.menuController;
 import controllers.studentController;
 import javax.accessibility.AccessibleContext;
@@ -79,6 +80,11 @@ public class menuView extends javax.swing.JFrame {
 
         menuAddUserButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuAddUserButton.setText("Add user");
+        menuAddUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAddUserButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,6 +155,11 @@ public class menuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         studentController.showStudentView();
     }//GEN-LAST:event_menuStudentButtonActionPerformed
+
+    private void menuAddUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddUserButtonActionPerformed
+        // TODO add your handling code here:
+        addUserController.showAddUserView();
+    }//GEN-LAST:event_menuAddUserButtonActionPerformed
 
     /**
      * @param args the command line arguments

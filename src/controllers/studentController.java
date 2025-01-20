@@ -17,7 +17,7 @@ import static models.Person.isValidEmail;
 import models.Student;
 import static models.Student.isValidStudentID;
 import static models.dbConnection.checkDNIStudentEdit;
-import static models.dbConnection.checkDNIandEmail;
+import static models.dbConnection.checkDNIandEmailStudent;
 import static models.dbConnection.deleteStudent;
 import static models.dbConnection.editStudent;
 import static models.dbConnection.newStudent;
@@ -109,7 +109,7 @@ public class studentController {
         if(isValidEmail(email)){
             try{
     int dni = Integer.parseInt(dniStr);
-    boolean flagValidations = checkDNIandEmail(dni,email);
+    boolean flagValidations = checkDNIandEmailStudent(dni,email);
     if(flagValidations == false){
     newStudent(0, status, degree, name, lastname, birth, nationality, email, dni);
     JOptionPane.showMessageDialog(null, "The student has been successfully added", "Success", JOptionPane.INFORMATION_MESSAGE);

@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
 public class Student extends Person {
     private int studentID;
     private String status;

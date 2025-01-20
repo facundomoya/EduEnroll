@@ -18,28 +18,34 @@ public class loginController {
         String user_name = view.getUserTextField1().getText();
         String pass = view.getPassTextField().getText();
         JLabel menuLabel2 = menuController.view.getMenuLabel2();
+        getConnection();
 
         // Verificar si el usuario y contraseña son correctos
-        User user = isValidUser(user_name, pass);
+        User user = isValidUser(user_name, pass);       
         if (user != null) {
             if(user.getUser_type() == 1){
-            // Si es válido, realizar las acciones necesarias, como redirigir a otra vista                   
+            // Si es válido, realizar las acciones necesarias, como redirigir a otra vista
             menuController.view.setVisible(true);   
             view.setVisible(false);           
             menuLabel2.setText(user_name);
             view.getUserTextField1().setText("");
             view.getPassTextField().setText("");
-            getConnection();
+            menuController.view.getMenuStudentButton().setEnabled(true);
+            menuController.view.getMenuCourseButton().setEnabled(true);
+            menuController.view.getMenuDegreeButton().setEnabled(true);
+            menuController.view.getMenuAddUserButton().setEnabled(true);   
             }else{
+            menuController.view.setVisible(true);   
+            view.setVisible(false);           
+            menuLabel2.setText(user_name);
+            view.getUserTextField1().setText("");
+            view.getPassTextField().setText("");
             menuController.view.getMenuStudentButton().setEnabled(false);
             menuController.view.getMenuCourseButton().setEnabled(false);
             menuController.view.getMenuDegreeButton().setEnabled(false);
-            menuController.view.getMenuAddUserButton().setEnabled(false);
-            getConnection();
+            menuController.view.getMenuAddUserButton().setEnabled(false);          
             }           
         }else {
-            // Si no es válido, mostrar un mensaje de error
-            getConnection();
             JOptionPane.showMessageDialog(null, "Incorrect username or password", "Alert", JOptionPane.INFORMATION_MESSAGE);         
         }
     }

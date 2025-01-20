@@ -39,17 +39,6 @@ public class dbConnection {
         }
         return con;
     }
-
-    // Cerrar la conexión cuando ya no se necesite
-    public static void closeConnection() {
-        if (con != null) {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     
  public static User isValidUser(String user_name, String password) {
     Connection con = null;
@@ -57,7 +46,7 @@ public class dbConnection {
     ResultSet resultSet = null;
 
     // Inicializa el objeto User
-    User user = new User(user_name, password, 0);
+    User user = new User(0, user_name, password, 0);
 
     try {
         con = dbConnection.getConnection();
@@ -80,6 +69,7 @@ public class dbConnection {
             return null; // No se encontró el usuario
         }
     } catch (SQLException e) {
+        System.out.println("ERROR EN ISVALIDUSER");
         e.printStackTrace();
         return null;
     } finally {
@@ -175,7 +165,7 @@ public class dbConnection {
     }
 }
  
- public static boolean checkDNIandEmail(int dni, String email){
+ public static boolean checkDNIandEmailStudent(int dni, String email){
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet resultset = null;
@@ -405,6 +395,135 @@ public class dbConnection {
   
   return studentList;
  }
-}
+ 
+ //Metodos para addUserController
+ 
+ public static void addUser(String name, String lastname, int dni, LocalDate birth , String nationality, String email, String user_typeStr, String professorType, String user_name, String password){
+    Connection con = null;
+    PreparedStatement ps = null;
+    int user_type = 0;
+    ResultSet rs = null;
+    
+    if(user_typeStr.equals("Administrator")){
+    user_type = 1;
+    }else{
+    user_type = 2;
+    }
 
+    User user = new User(0,user_name, password, user_type);
+    Administrator admin = new Administrator(0, name, lastname, birth, nationality, email, dni);
+    Professor prof = new Professor(0, professorType, name, lastname, birth, nationality, email, dni);
+
+ try{
+    con = dbConnection.getConnection();
+    String query = "INSERT INTO user(user_name, password, user_type) VALUES (?,?,?)";
+       ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);            
+       ps.setString(1, user.getUser_name());
+       ps.setString(2, user.getPassword());
+       ps.setInt(3, user.getUser_type());
+       ps.executeUpdate();
+       rs = ps.getGeneratedKeys();  // Obtener las claves generadas
+        int user_id = 0;
+        if (rs.next()) {
+            user_id = rs.getInt(1);  // La primera columna es la clave primaria generada
+        }
+       if(user_type == 1){
+       String query_adm = "INSERT INTO administrator(user_id, name, lastname, birth, nationality, email, dni) VALUES (?,?,?,?,?,?,?)";
+        ps = con.prepareStatement(query_adm);
+            ps.setInt(1, user_id);  // Asignamos el user_id generado en la tabla 'user'
+            ps.setString(2, admin.getName());
+            ps.setString(3, admin.getLastname());
+            ps.setDate(4, admin.getBirth() != null ? java.sql.Date.valueOf(admin.getBirth()) : null);  // Convertir LocalDate a java.sql.Date
+            ps.setString(5, admin.getNationality());
+            ps.setString(6, admin.getEmail());
+            ps.setInt(7, admin.getDni());
+            ps.executeUpdate();
+       }else{
+       String query_adm = "INSERT INTO professor(professorType, dni, name, lastname, birth, nationality, email, user_id) VALUES (?,?,?,?,?,?,?,?)";
+        ps = con.prepareStatement(query_adm);
+            ps.setString(1, prof.getProfessorType());  // Asignamos el user_id generado en la tabla 'user'
+            ps.setInt(2, prof.getDni());
+            ps.setString(3, prof.getName());
+            ps.setString(4, prof.getLastname());
+            ps.setDate(5, prof.getBirth() != null ? java.sql.Date.valueOf(prof.getBirth()) : null);  // Convertir LocalDate a java.sql.Date
+            ps.setString(6, prof.getNationality());
+            ps.setString(7, admin.getEmail());
+            ps.setInt(8, user_id);
+            ps.executeUpdate();
+       }
        
+ }catch(SQLException e){e.printStackTrace();}
+ }
+ 
+ public static boolean checkDNIandEmailAdministrator(int dni, String email){
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet resultset = null;
+    boolean flagValidationsAdministrator = false;
+
+    try{
+       con = dbConnection.getConnection();
+       String query = "SELECT a.dni, a.email FROM administrator a WHERE a.dni = ? OR a.email = ?";
+       pstmt = con.prepareStatement(query);
+      
+       pstmt.setInt(1, dni);
+       pstmt.setString(2, email);
+       resultset = pstmt.executeQuery();
+
+       if(resultset.next()){
+       int db_dni = resultset.getInt("dni");
+       String db_email = resultset.getString("email");
+       
+       if(db_dni == dni && !db_email.equals(email)){
+        JOptionPane.showMessageDialog(null, "Incorrect dni, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidationsAdministrator = true;
+       }else if(db_email.equals(email) && db_dni != dni){
+        JOptionPane.showMessageDialog(null, "Incorrect email, it already exists ", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidationsAdministrator = true;
+       }else if(db_dni == dni && db_email.equals(email) ){
+        JOptionPane.showMessageDialog(null, "Incorrect dni and email, they already exist", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidationsAdministrator = true;
+       }
+       }
+    }catch(SQLException e){
+    e.printStackTrace();
+    }
+    return flagValidationsAdministrator;
+ }
+ 
+  public static boolean checkDNIandEmailProfessor(int dni, String email){
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet resultset = null;
+    boolean flagValidationsProfessor = false;
+
+    try{
+       con = dbConnection.getConnection();
+       String query = "SELECT p.dni, p.email FROM professor p WHERE p.dni = ? OR p.email = ?";
+       pstmt = con.prepareStatement(query);
+      
+       pstmt.setInt(1, dni);
+       pstmt.setString(2, email);
+       resultset = pstmt.executeQuery();
+
+       if(resultset.next()){
+       int db_dni = resultset.getInt("dni");
+       String db_email = resultset.getString("email");
+       
+       if(db_dni == dni && !db_email.equals(email)){
+        JOptionPane.showMessageDialog(null, "Incorrect dni, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidationsProfessor = true;
+       }else if(db_email.equals(email) && db_dni != dni){
+        JOptionPane.showMessageDialog(null, "Incorrect email, it already exists ", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidationsProfessor = true;
+       }else if(db_dni == dni && db_email.equals(email) ){
+        JOptionPane.showMessageDialog(null, "Incorrect dni and email, they already exist", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        flagValidationsProfessor = true;
+       }
+       }
+    }catch(SQLException e){
+    e.printStackTrace();
+    }
+    return flagValidationsProfessor;
+ }
+}

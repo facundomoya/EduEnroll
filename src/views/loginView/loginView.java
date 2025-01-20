@@ -5,6 +5,7 @@
 package views;
 
 import controllers.loginController;
+import static models.dbConnection.getConnection;
 
 /**
  *

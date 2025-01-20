@@ -79,7 +79,7 @@ public abstract class Person {
         return matcher.matches();
     }
      
- public static boolean isValidBirth(String birth) {
+    public static boolean isValidBirth(String birth) {
     // Convertir LocalDate a String con el formato YYYY-MM-DD
     String ageStr = birth.toString(); // Esto convierte el LocalDate a un String en el formato adecuado
     
@@ -91,12 +91,11 @@ public abstract class Person {
     return matcher.matches();
 }
 
-    
     public static boolean isValidEmail(String emailStr) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        Matcher matcher = pattern.matcher(emailStr);
-        return matcher.matches();
+    String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    Pattern pattern = Pattern.compile(emailRegex);
+    Matcher matcher = pattern.matcher(emailStr);
+    
+    return matcher.matches();
 }
-
 }

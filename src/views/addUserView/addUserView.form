@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+              <Component id="addUserViewLabel9" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="203" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="addUserLabel2" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="addUserLabel1" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="addUserLabel3" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="addUserLabel4" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="addUserLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel6" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="addUserLabel7" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="addUserLabel8" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="addUserTextField6" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addUserTextField5" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addUserTextField4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addUserTextField3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addUserTextField2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addUserTextField1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addUserComboBox1" alignment="0" pref="128" max="32767" attributes="0"/>
+                  <Component id="addUserComboBox2" max="32767" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="175" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="addUserButton1" max="32767" attributes="0"/>
+                          <Component id="addUserButton2" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="addUserLabel9" max="32767" attributes="0"/>
+                          <Component id="addUserLabel10" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="addUserTextField8" max="32767" attributes="0"/>
+                          <Component id="addUserTextField7" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="addUserViewLabel9" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addUserComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addUserTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addUserTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addUserTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addUserTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addUserTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addUserTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addUserLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addUserButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="addUserButton2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="addUserLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="User type:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="addUserComboBox1">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="..."/>
+            <StringItem index="1" value="Administrator"/>
+            <StringItem index="2" value="Professor"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addUserComboBox1ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Name:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lastname:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="addUserTextField1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DNI:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="addUserTextField2">
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Date of birth:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="addUserTextField3">
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nationality:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="addUserTextField4">
+    </Component>
+    <Component class="javax.swing.JTextField" name="addUserTextField5">
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="addUserTextField6">
+    </Component>
+    <Component class="javax.swing.JButton" name="addUserButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add user"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addUserButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Professor type:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="addUserComboBox2">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Permanent"/>
+            <StringItem index="1" value="Substitute"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserViewLabel9">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="24" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ADD USER"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="addUserButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Close"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Username:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="addUserLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Password:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="addUserTextField8">
+    </Component>
+    <Component class="javax.swing.JTextField" name="addUserTextField7">
+    </Component>
+  </SubComponents>
+</Form>
