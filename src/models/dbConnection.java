@@ -69,7 +69,6 @@ public class dbConnection {
             return null; // No se encontró el usuario
         }
     } catch (SQLException e) {
-        System.out.println("ERROR EN ISVALIDUSER");
         e.printStackTrace();
         return null;
     } finally {
@@ -398,7 +397,34 @@ public class dbConnection {
  
  //Metodos para addUserController
  
- public static void addUser(String name, String lastname, int dni, LocalDate birth , String nationality, String email, String user_typeStr, String professorType, String user_name, String password){
+ public static boolean checkUser(String user_nameStr){
+  Connection con = null;
+  PreparedStatement ps = null;
+  ResultSet rs = null;
+  boolean flagValidations = false;
+  
+  User user = new User(0, user_nameStr, null, 0);
+   
+   try{
+    con = dbConnection.getConnection();
+   String query = "SELECT u.user_name \n" +
+"FROM user u \n" +
+"WHERE BINARY u.user_name = ?";
+      ps = con.prepareStatement(query);
+      ps.setString(1, user.getUser_name());
+      rs = ps.executeQuery();
+      
+      if(rs.next()){
+      String db_user_name = rs.getString("user_name");
+      if(db_user_name.equals(user_nameStr)){
+       flagValidations = true;
+       }
+      }
+   }catch(SQLException e){e.printStackTrace();}
+   return flagValidations;
+ }
+ 
+ public static void addUser(String name, String lastname, int dni, LocalDate birth , String nationality, String email, String user_typeStr, String professorType, String user_nameStr, String password){
     Connection con = null;
     PreparedStatement ps = null;
     int user_type = 0;
@@ -410,7 +436,7 @@ public class dbConnection {
     user_type = 2;
     }
 
-    User user = new User(0,user_name, password, user_type);
+    User user = new User(0, user_nameStr, password, user_type);
     Administrator admin = new Administrator(0, name, lastname, birth, nationality, email, dni);
     Professor prof = new Professor(0, professorType, name, lastname, birth, nationality, email, dni);
 

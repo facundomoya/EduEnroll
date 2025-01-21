@@ -1,5 +1,6 @@
 package controllers;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import static models.Person.isValidBirth;
@@ -8,6 +9,7 @@ import static models.Person.isValidEmail;
 import static models.dbConnection.addUser;
 import static models.dbConnection.checkDNIandEmailAdministrator;
 import static models.dbConnection.checkDNIandEmailProfessor;
+import static models.dbConnection.checkUser;
 import views.addUserView.addUserView;
 
 public class addUserController {
@@ -40,10 +42,12 @@ public class addUserController {
     String email = view_addUser.getAddUserTextField6().getText();
     String user_typeStr = (String) view_addUser.getAddUserComboBox1().getSelectedItem();
     String professorType = (String) view_addUser.getAddUserComboBox2().getSelectedItem();
-    String user_name = view_addUser.getAddUserTextField7().getText();
+    String user_nameStr = view_addUser.getAddUserTextField7().getText();
     String password = view_addUser.getAddUserTextField8().getText();
     
-    if(dniStr != null && !dniStr.trim().isEmpty() && !(name.equals("") || birthStr.equals("") || email.equals("") || user_name.equals("") || password.equals("") || lastname.equals("") || nationality.equals("") || user_typeStr.equals("...")|| professorType.equals("..."))){
+   if(!checkUser(user_nameStr)){
+       System.out.println(checkUser(user_nameStr));
+   if(dniStr != null && !dniStr.trim().isEmpty() && !(name.equals("") || birthStr.equals("") || email.equals("") || user_nameStr.equals("") || password.equals("") || lastname.equals("") || nationality.equals("") || user_typeStr.equals("...")|| professorType.equals("..."))){
   
     if(isValidDNI(dniStr)){
     int dni = Integer.parseInt(dniStr);
@@ -54,14 +58,14 @@ public class addUserController {
 if (user_typeStr.equals("Administrator") ) {
     boolean flagValidationsAdministrator = checkDNIandEmailAdministrator(dni, email);
     if (!flagValidationsAdministrator) {
-    addUser(name, lastname, dni, birth ,nationality, email, user_typeStr, professorType, user_name, password);
+    addUser(name, lastname, dni, birth ,nationality, email, user_typeStr, professorType, user_nameStr, password);
     JOptionPane.showMessageDialog(null, "The user has been successfully added", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
     }
     else if (user_typeStr.equals("Professor")) {
     boolean flagValidationsProfessor = checkDNIandEmailProfessor(dni, email);
     if (!flagValidationsProfessor) {       
-     addUser(name, lastname, dni, birth ,nationality, email, user_typeStr, professorType, user_name, password);
+     addUser(name, lastname, dni, birth ,nationality, email, user_typeStr, professorType, user_nameStr, password);
     JOptionPane.showMessageDialog(null, "The user has been successfully added", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
     }}else{
@@ -76,5 +80,8 @@ if (user_typeStr.equals("Administrator") ) {
     }else{
     JOptionPane.showMessageDialog(null, "You have to complete all fields", "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
-    }
+   }else{
+   JOptionPane.showMessageDialog(null, "Incorrect user, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
+   }
+   }
 }
