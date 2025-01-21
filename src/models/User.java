@@ -1,7 +1,9 @@
 package models;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class User {
     private int userID;
@@ -50,4 +52,32 @@ public class User {
     
     public User() {
     }    
+    
+   public static String hashPassword(String password) {
+        // Genera el hash con un salt aleatorio (12 rounds)
+        String hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+        return hashedPassword;  // Devuelve el hash completo
+    }
+   
+   public static boolean checkPassword(String password, String storedHashedPassword) {
+    // Verifica si la contraseña en texto plano coincide con el hash almacenado en la base de datos
+    BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), storedHashedPassword.toCharArray());
+    return result.verified;  // Devuelve true si la contraseña coincide, false si no
+}
+   
+    public static String sha256(String password) {
+    try {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hashBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hashBytes) {
+            hexString.append(String.format("%02x", b));
+        }
+        return hexString.toString();
+    } catch (NoSuchAlgorithmException e) {
+        e.printStackTrace();
+        return null;
+    }
+}
+
 }

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static models.User.checkPassword;
+import static models.User.sha256;
 
 public class dbConnection {
     
@@ -52,19 +54,21 @@ public class dbConnection {
         con = dbConnection.getConnection();
 
         // SQL para consultar si el usuario y la contraseña coinciden
-        String query = "SELECT * FROM User WHERE BINARY user_name = ? AND BINARY password = ?";
+        String query = "SELECT * FROM User WHERE BINARY user_name = ?";
         preparedStatement = con.prepareStatement(query);
         preparedStatement.setString(1, user.getUser_name());
-        preparedStatement.setString(2, user.getPassword());
 
         resultSet = preparedStatement.executeQuery();
 
-        // Si la consulta devuelve un registro, asignamos el user_type
         if (resultSet.next()) {
-            int user_type = resultSet.getInt("user_type");  // Asume que 'user_type' es una columna en la tabla 'User'
-            user.setUser_type(user_type);  // Establece el valor de user_type en el objeto User
-            // Si la consulta devuelve un registro, el usuario es válido
-            return user; // El usuario es válido
+            String storedHashedPassword = resultSet.getString("password");  // Recuperamos el hash almacenado en la BD
+            String enteredPasswordHash = sha256(password);
+            boolean isPasswordValid = checkPassword(password, storedHashedPassword);  // Verificamos la contraseña
+             if (isPasswordValid || storedHashedPassword.equals(enteredPasswordHash)) {
+                int user_type = resultSet.getInt("user_type");  // Asume que 'user_type' es una columna en la tabla 'User'
+                user.setUser_type(user_type);  // Establece el valor de user_type en el objeto User
+                return user;  // La contraseña es válida
+            }
         } else {
             return null; // No se encontró el usuario
         }
@@ -72,7 +76,6 @@ public class dbConnection {
         e.printStackTrace();
         return null;
     } finally {
-        // Cerrar recursos
         try {
             if (resultSet != null) resultSet.close();
             if (preparedStatement != null) preparedStatement.close();
@@ -81,7 +84,8 @@ public class dbConnection {
             e.printStackTrace();
         }
     }
-}
+    return null;
+ }
 
  public static void showStudent() {
     Connection con = null;
@@ -424,7 +428,7 @@ public class dbConnection {
    return flagValidations;
  }
  
- public static void addUser(String name, String lastname, int dni, LocalDate birth , String nationality, String email, String user_typeStr, String professorType, String user_nameStr, String password){
+ public static void addUser(String name, String lastname, int dni, LocalDate birth , String nationality, String email, String user_typeStr, String professorType, String user_nameStr, String hashedPassword){
     Connection con = null;
     PreparedStatement ps = null;
     int user_type = 0;
@@ -436,7 +440,7 @@ public class dbConnection {
     user_type = 2;
     }
 
-    User user = new User(0, user_nameStr, password, user_type);
+    User user = new User(0, user_nameStr, hashedPassword, user_type);
     Administrator admin = new Administrator(0, name, lastname, birth, nationality, email, dni);
     Professor prof = new Professor(0, professorType, name, lastname, birth, nationality, email, dni);
 
@@ -445,7 +449,7 @@ public class dbConnection {
     String query = "INSERT INTO user(user_name, password, user_type) VALUES (?,?,?)";
        ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);            
        ps.setString(1, user.getUser_name());
-       ps.setString(2, user.getPassword());
+       ps.setString(2, hashedPassword);
        ps.setInt(3, user.getUser_type());
        ps.executeUpdate();
        rs = ps.getGeneratedKeys();  // Obtener las claves generadas
