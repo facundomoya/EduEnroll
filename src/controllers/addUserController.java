@@ -25,6 +25,19 @@ public class addUserController {
     view_addUser.setVisible(false);
     }
     
+    public static void cleanTextFieldComboBoxAddUser(){
+    view_addUser.getAddUserTextField1().setText("");
+    view_addUser.getAddUserTextField2().setText("");
+    view_addUser.getAddUserTextField3().setText("");
+    view_addUser.getAddUserTextField4().setText("");
+    view_addUser.getAddUserTextField5().setText("");
+    view_addUser.getAddUserTextField6().setText("");
+    view_addUser.getAddUserTextField7().setText("");
+    view_addUser.getAddUserTextField8().setText("");
+    view_addUser.getAddUserComboBox1().setSelectedIndex(0);
+    view_addUser.getAddUserComboBox2().setSelectedIndex(0);
+    }
+    
     public static void selectComboBox1(){
     String userType = (String) view_addUser.getAddUserComboBox1().getSelectedItem();
     if(userType == "Professor"){

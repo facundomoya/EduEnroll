@@ -159,6 +159,7 @@ public class menuView extends javax.swing.JFrame {
     private void menuAddUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddUserButtonActionPerformed
         // TODO add your handling code here:
         addUserController.showAddUserView();
+        addUserController.cleanTextFieldComboBoxAddUser();
     }//GEN-LAST:event_menuAddUserButtonActionPerformed
 
     /**

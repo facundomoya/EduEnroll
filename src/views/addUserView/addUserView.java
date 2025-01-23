@@ -91,6 +91,11 @@ public class addUserView extends javax.swing.JFrame {
         addUserViewLabel9.setText("ADD USER");
 
         addUserButton2.setText("Close");
+        addUserButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserButton2ActionPerformed(evt);
+            }
+        });
 
         addUserLabel9.setText("Username:");
 
@@ -201,7 +206,14 @@ public class addUserView extends javax.swing.JFrame {
     private void addUserButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButton1ActionPerformed
         // TODO add your handling code here:
         addUserController.addUserButton();
+        addUserController.cleanTextFieldComboBoxAddUser();
     }//GEN-LAST:event_addUserButton1ActionPerformed
+
+    private void addUserButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButton2ActionPerformed
+        // TODO add your handling code here:
+        addUserController.hideAddUserView();
+        addUserController.cleanTextFieldComboBoxAddUser();
+    }//GEN-LAST:event_addUserButton2ActionPerformed
 
     /**
      * @param args the command line arguments
