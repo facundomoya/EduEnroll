@@ -4,6 +4,9 @@
  */
 package views.professorViews;
 
+import controllers.menuController;
+import controllers.professorController;
+
 /**
  *
  * @author facun
@@ -26,21 +29,102 @@ public class professorView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        professorLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        professorTable = new javax.swing.JTable();
+        backStudentButton = new javax.swing.JButton();
+        editProfessorButton = new javax.swing.JButton();
+        deleteProfessorButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        professorLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        professorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        professorLabel1.setText("PROFESSOR");
+
+        professorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Professor ID", "Professor Type", "Name", "Lastname", "Birth", "Nationality", "DNI"
+            }
+        ));
+        professorTable.setPreferredSize(new java.awt.Dimension(635, 80));
+        jScrollPane1.setViewportView(professorTable);
+
+        backStudentButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\facun\\OneDrive\\Documents\\NetBeansProjects\\EduEnroll\\src\\resources\\images\\back-icon.png")); // NOI18N
+        backStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backStudentButtonActionPerformed(evt);
+            }
+        });
+
+        editProfessorButton.setText("Edit professor");
+        editProfessorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProfessorButtonActionPerformed(evt);
+            }
+        });
+
+        deleteProfessorButton.setText("Delete professor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(professorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(245, 245, 245))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editProfessorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteProfessorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(professorLabel1)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backStudentButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(editProfessorButton)
+                .addGap(18, 18, 18)
+                .addComponent(deleteProfessorButton)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backStudentButtonActionPerformed
+        // TODO add your handling code here:
+        menuController.showMenu();
+        professorController.hideProfessorView();
+    }//GEN-LAST:event_backStudentButtonActionPerformed
+
+    private void editProfessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfessorButtonActionPerformed
+        // TODO add your handling code here:
+        professorController.showEditProfessorView();
+    }//GEN-LAST:event_editProfessorButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,7 +160,63 @@ public class professorView extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backStudentButton;
+    private javax.swing.JButton deleteProfessorButton;
+    private javax.swing.JButton editProfessorButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel professorLabel1;
+    private javax.swing.JTable professorTable;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getBackStudentButton() {
+        return backStudentButton;
+    }
+
+    public void setBackStudentButton(javax.swing.JButton backStudentButton) {
+        this.backStudentButton = backStudentButton;
+    }
+
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public javax.swing.JLabel getProfessorLabel1() {
+        return professorLabel1;
+    }
+
+    public void setProfessorLabel1(javax.swing.JLabel professorLabel1) {
+        this.professorLabel1 = professorLabel1;
+    }
+
+    public javax.swing.JTable getProfessorTable() {
+        return professorTable;
+    }
+
+    public void setProfessorTable(javax.swing.JTable professorTable) {
+        this.professorTable = professorTable;
+    }
+
+    public javax.swing.JButton getDeleteProfessorButton() {
+        return deleteProfessorButton;
+    }
+
+    public void setDeleteProfessorButton(javax.swing.JButton deleteProfessorButton) {
+        this.deleteProfessorButton = deleteProfessorButton;
+    }
+
+    public javax.swing.JButton getEditProfessorButton() {
+        return editProfessorButton;
+    }
+
+    public void setEditProfessorButton(javax.swing.JButton editProfessorButton) {
+        this.editProfessorButton = editProfessorButton;
+    }
 }

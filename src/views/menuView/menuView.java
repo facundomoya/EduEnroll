@@ -6,6 +6,7 @@ package views;
 
 import controllers.addUserController;
 import controllers.menuController;
+import controllers.professorController;
 import controllers.studentController;
 import javax.accessibility.AccessibleContext;
 import javax.swing.JRootPane;
@@ -69,6 +70,11 @@ public class menuView extends javax.swing.JFrame {
 
         menuProfessorButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuProfessorButton.setText("Professor");
+        menuProfessorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProfessorButtonActionPerformed(evt);
+            }
+        });
 
         menuCourseButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuCourseButton.setText("Course");
@@ -161,6 +167,11 @@ public class menuView extends javax.swing.JFrame {
         addUserController.showAddUserView();
         addUserController.cleanTextFieldComboBoxAddUser();
     }//GEN-LAST:event_menuAddUserButtonActionPerformed
+
+    private void menuProfessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProfessorButtonActionPerformed
+        // TODO add your handling code here:
+        professorController.showProfessorView();
+    }//GEN-LAST:event_menuProfessorButtonActionPerformed
 
     /**
      * @param args the command line arguments

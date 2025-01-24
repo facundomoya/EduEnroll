@@ -1,8 +1,6 @@
 package models;
 
 import java.time.LocalDate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Professor extends Person {
     private int professorID;

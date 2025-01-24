@@ -1,4 +1,5 @@
 package models;
+import controllers.professorController;
 import controllers.studentController;
 import java.io.IOException;
 import java.io.InputStream;
@@ -555,5 +556,177 @@ public class dbConnection {
     e.printStackTrace();
     }
     return flagValidationsProfessor;
+ }
+  
+  //Metodos para professorController
+  
+  public static void showProfessor() {
+    Connection con = null;
+    Statement stmt = null;
+    ResultSet resultset = null;
+
+    ArrayList<Professor> professorList = new ArrayList<>();
+
+    // Crear el modelo de la tabla
+    DefaultTableModel model = new DefaultTableModel();
+    
+    // Agregar las columnas al modelo
+    model.addColumn("Professor ID");
+    model.addColumn("Professor Type");
+    model.addColumn("Name");
+    model.addColumn("Lastname");
+    model.addColumn("Date of birth");
+    model.addColumn("Nationality");
+    model.addColumn("DNI");
+
+    try {
+        // Conexión a la base de datos
+        con = dbConnection.getConnection();
+        stmt = con.createStatement();
+        String query = "SELECT p.professorID, p.name, p.lastname, p.birth, p.nationality, p.professorType, p.dni " +
+               "FROM professor p";
+
+        resultset = stmt.executeQuery(query);
+
+        // Recorrer el ResultSet y agregar los datos a las listas
+        while (resultset.next()) {
+            Date sqlDate = resultset.getDate("birth");
+            LocalDate birth = sqlDate != null ? sqlDate.toLocalDate() : null;
+            Professor professor = new Professor(
+                resultset.getInt("professorID"),
+                resultset.getString("professorType"),
+                resultset.getString("name"),
+                resultset.getString("lastname"),           
+                birth,              
+                resultset.getString("nationality"),
+                null,
+                resultset.getInt("dni")            
+            );
+
+            professorList.add(professor);
+
+            // Crear la fila para la tabla
+            Object[] row = new Object[8];
+            row[0] = professor.getProfessorID();
+            row[1] = professor.getProfessorType();
+            row[2] = professor.getName();
+            row[3] = professor.getLastname();
+            row[4] = professor.getBirth();
+            row[5] = professor.getNationality();
+            row[6] = professor.getDni();
+            
+
+            // Agregar la fila al modelo de la tabla
+            model.addRow(row);
+        }
+
+        // Asignar el modelo de datos a la JTable
+        professorController.view.getProfessorTable().setModel(model);
+        // Cambia el tamaño de la columna degree en la tabla
+        professorController.view.getProfessorTable().getColumnModel().getColumn(5).setPreferredWidth(150);
+        professorController.view.getProfessorTable().revalidate();
+        professorController.view.getProfessorTable().repaint();
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // Cerrar los recursos
+        try {
+            if (resultset != null) resultset.close();
+            if (stmt != null) stmt.close();           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+  
+   public static ArrayList<Professor> searchProfessorEdit(int professorID){
+   Connection con = null;
+   PreparedStatement pstmt = null;
+   ResultSet resultset = null;
+   ArrayList<Professor> professorList = new ArrayList<>();
+ 
+   try{
+    con = dbConnection.getConnection();
+    String query = "SELECT p.dni, p.name, p.lastname, p.nationality, p.professorType FROM professor p WHERE p.professorID = ?";
+    pstmt = con.prepareStatement(query);
+    pstmt.setInt(1, professorID);
+    resultset = pstmt.executeQuery(); 
+   
+    while (resultset.next()) {
+            Professor professor = new Professor(
+                professorID,
+                resultset.getString("professorType"),
+                resultset.getString("name"),
+                resultset.getString("lastname"),
+                null,
+                resultset.getString("nationality"),
+                null,
+                resultset.getInt("dni")           
+            );
+            
+             professorList.add(professor);
+    }  
+
+    }catch(SQLException e){e.printStackTrace();}
+   
+     return professorList;
+ }
+   
+   public static boolean checkDNIProfessorEdit(String professorIDStr, int dni){
+ 
+  Connection con = null;
+  PreparedStatement pstmt = null;
+  ResultSet resultset = null;
+  boolean flagValidations = false;
+  
+  int professorID = Integer.parseInt(professorIDStr);  // Conversión correcta de String a int
+  Professor professor = new Professor(professorID,null,null,null,null,null,null,dni);
+  
+  try{
+      
+      con = dbConnection.getConnection();
+      String query = "SELECT p.dni FROM professor p WHERE p.dni = ? AND p.professorID != ?";
+      pstmt = con.prepareStatement(query);
+
+      pstmt.setInt(1, professor.getDni());
+      pstmt.setInt(2, professor.getProfessorID());
+      resultset = pstmt.executeQuery();
+
+      if(resultset.next()){
+      int db_dni = resultset.getInt("dni");
+      if(db_dni == dni){
+       JOptionPane.showMessageDialog(null, "Incorrect dni, it already exists", "Alert", JOptionPane.INFORMATION_MESSAGE);
+       flagValidations = true;
+       }
+       }
+  }catch(SQLException e){
+  e.printStackTrace();
+  }
+  return flagValidations;
+ }
+   
+   public static void editProfessor(int professorID, int dni, String name, String lastname, String nationality, String professorType){
+ 
+  Connection con = null;
+  PreparedStatement pstmt = null;
+
+  Professor professor = new Professor(professorID, professorType,name,lastname,null,nationality,null,dni);
+
+  try{
+   con = dbConnection.getConnection();
+   String query = "UPDATE professor SET dni = ?, name = ?, lastname = ?, nationality = ?, professorType = ? WHERE professorID = ?";
+   pstmt = con.prepareStatement(query);
+
+      pstmt.setInt(1, professor.getDni());
+      pstmt.setString(2, professor.getName());
+      pstmt.setString(3, professor.getLastname());
+      pstmt.setString(4, professor.getNationality());
+      pstmt.setString(5, professor.getProfessorType());
+      pstmt.setInt(6, professor.getProfessorID());
+
+      pstmt.executeUpdate();
+   
+  }catch(SQLException e){e.printStackTrace();}
  }
 }

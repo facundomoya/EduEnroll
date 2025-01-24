@@ -33,17 +33,24 @@ public class loginController {
             menuController.view.getMenuStudentButton().setEnabled(true);
             menuController.view.getMenuCourseButton().setEnabled(true);
             menuController.view.getMenuDegreeButton().setEnabled(true);
-            menuController.view.getMenuAddUserButton().setEnabled(true);   
+            menuController.view.getMenuAddUserButton().setEnabled(true);
+            studentController.view.getAddStudentButton().setEnabled(true);
+            studentController.view.getEditStudentButton().setEnabled(true);
+            studentController.view.getDeleteStudentButton().setEnabled(true);
+            professorController.view.getEditProfessorButton().setEnabled(true);
+            professorController.view.getDeleteProfessorButton().setEnabled(true);
             }else{
             menuController.view.setVisible(true);   
             view.setVisible(false);           
             menuLabel2.setText(user_name);
             view.getUserTextField1().setText("");
             view.getPassTextField().setText("");
-            menuController.view.getMenuStudentButton().setEnabled(false);
-            menuController.view.getMenuCourseButton().setEnabled(false);
-            menuController.view.getMenuDegreeButton().setEnabled(false);
-            menuController.view.getMenuAddUserButton().setEnabled(false);          
+            menuController.view.getMenuAddUserButton().setEnabled(false);
+            studentController.view.getAddStudentButton().setEnabled(false);
+            studentController.view.getEditStudentButton().setEnabled(false);
+            studentController.view.getDeleteStudentButton().setEnabled(false);
+            professorController.view.getEditProfessorButton().setEnabled(false);
+            professorController.view.getDeleteProfessorButton().setEnabled(false);
             }           
         }else {
             JOptionPane.showMessageDialog(null, "Incorrect username or password", "Alert", JOptionPane.INFORMATION_MESSAGE);         
