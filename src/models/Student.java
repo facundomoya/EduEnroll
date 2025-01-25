@@ -43,11 +43,11 @@ public class Student extends Person {
     public Student() {
     } 
 
-        public static boolean isValidStudentID(String studentIDStr) {
-        String studentIDRegex = "^(?!0$)[0-9]{1,8}$";
-        Pattern pattern = Pattern.compile(studentIDRegex);
-        Matcher matcher = pattern.matcher(studentIDStr);
-        return matcher.matches();
+    public static boolean isValidStudentID(String studentIDStr) {
+    String studentIDRegex = "^(?!0$)[0-9]{1,8}$";
+    Pattern pattern = Pattern.compile(studentIDRegex);
+    Matcher matcher = pattern.matcher(studentIDStr);
+    return matcher.matches();
     }
     
 }

@@ -71,6 +71,11 @@ public class professorView extends javax.swing.JFrame {
         });
 
         deleteProfessorButton.setText("Delete professor");
+        deleteProfessorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteProfessorButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,6 +130,11 @@ public class professorView extends javax.swing.JFrame {
         // TODO add your handling code here:
         professorController.showEditProfessorView();
     }//GEN-LAST:event_editProfessorButtonActionPerformed
+
+    private void deleteProfessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProfessorButtonActionPerformed
+        // TODO add your handling code here:
+        professorController.showDeleteProfessorView();
+    }//GEN-LAST:event_deleteProfessorButtonActionPerformed
 
     /**
      * @param args the command line arguments

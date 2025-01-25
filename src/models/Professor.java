@@ -1,6 +1,8 @@
 package models;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Professor extends Person {
     private int professorID;
@@ -29,5 +31,12 @@ public class Professor extends Person {
     }
 
     public Professor() {
+    }
+    
+    public static boolean isValidProfessorID(String professorIDStr) {
+    String professorIDRegex = "^(?!0$)[0-9]{1,8}$";
+    Pattern pattern = Pattern.compile(professorIDRegex);
+    Matcher matcher = pattern.matcher(professorIDStr);
+    return matcher.matches();
     }
 }
