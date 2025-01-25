@@ -760,21 +760,33 @@ public class dbConnection {
 
     public static int deleteProfessor(String professorIDStr) {
         Connection con = null;
-        PreparedStatement pstmt = null;
+        PreparedStatement pstmt1 = null, pstmt2 = null;
+        ResultSet rs = null;
 
         int professorID = Integer.parseInt(professorIDStr);
         int row = 0;
+        int user_id = 0;
 
         Professor professor = new Professor(professorID, null, null, null, null, null, null, 0);
 
         try {
-
             con = dbConnection.getConnection();
-            String query = "DELETE FROM professor WHERE professorID = ?";
-            pstmt = con.prepareStatement(query);
-            pstmt.setInt(1, professor.getProfessorID());
-            row = pstmt.executeUpdate();
             
+            String query1 = "SELECT user_id FROM professor WHERE professorID = ?";
+            pstmt1 = con.prepareStatement(query1);
+            pstmt1.setInt(1, professor.getProfessorID());
+            rs = pstmt1.executeQuery();
+  
+            if (rs.next()) {      
+                user_id = rs.getInt("user_id");
+            }
+
+            User user = new User(user_id, null, null, 0);
+
+            String query2 = "DELETE FROM user WHERE user_id = ?";
+            pstmt2 = con.prepareStatement(query2);
+            pstmt2.setInt(1, user.getUserID());
+            row = pstmt2.executeUpdate();          
 
         } catch (SQLException e) {
             e.printStackTrace();
