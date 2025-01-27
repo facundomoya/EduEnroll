@@ -9,17 +9,20 @@ import static models.Student.isValidStudentID;
 import static models.dbConnection.checkDNIProfessorEdit;
 import static models.dbConnection.deleteProfessor;
 import static models.dbConnection.editProfessor;
+import static models.dbConnection.searchProfessor;
 import static models.dbConnection.searchProfessorEdit;
 import static models.dbConnection.showProfessor;
 import views.professorViews.deleteProfessorView;
 import views.professorViews.editProfessorView;
 import views.professorViews.professorView;
+import views.professorViews.searchProfessorView;
 
 public class professorController {
     
     public static professorView view = new professorView();
     public static editProfessorView view_editProfessor = new editProfessorView();
     public static deleteProfessorView view_deleteProfessor = new deleteProfessorView();
+    public static searchProfessorView view_searchProfessor = new searchProfessorView();
     
     public static void showProfessorView() {
         view.setVisible(true);
@@ -31,6 +34,16 @@ public class professorController {
         view_deleteProfessor.setDefaultCloseOperation(deleteProfessorView.DISPOSE_ON_CLOSE);
     }
     
+    public static void showEditProfessorView() {
+        view_editProfessor.setVisible(true);
+        view_editProfessor.setDefaultCloseOperation(editProfessorView.DISPOSE_ON_CLOSE);
+    }
+    
+    public static void showSearchProfessor(){
+    view_searchProfessor.setVisible(true);
+    view_searchProfessor.setDefaultCloseOperation(searchProfessorView.DISPOSE_ON_CLOSE);
+    }
+    
     public static void hideProfessorView() {
         view.setVisible(false);
     }
@@ -39,9 +52,19 @@ public class professorController {
         view_deleteProfessor.setVisible(false);
     }
     
-    public static void showEditProfessorView() {
-        view_editProfessor.setVisible(true);
-        view_editProfessor.setDefaultCloseOperation(editProfessorView.DISPOSE_ON_CLOSE);
+    public static void hideSearchProfessorView(){
+    view_searchProfessor.setVisible(false);
+    }
+
+    public static void cleanTextFieldSearchProfessor(){
+    view_searchProfessor.getSearchProfessorTextField1().setText("");
+    view_searchProfessor.getSearchProfessorTextField2().setText("");
+    view_searchProfessor.getSearchProfessorTextField3().setText("");
+    view_searchProfessor.getSearchProfessorTextField4().setText("");
+    view_searchProfessor.getSearchProfessorTextField5().setText("");
+    view_searchProfessor.getSearchProfessorTextField6().setText("");
+    view_searchProfessor.getSearchProfessorTextField7().setText("");
+    view_searchProfessor.getSearchProfessorTextField8().setText("");
     }
     
     public static void cleanTextFieldEditProfessor() {
@@ -137,5 +160,26 @@ public class professorController {
         } else {
             JOptionPane.showMessageDialog(null, "ProfessorID is invalid", "Alert", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+    
+    public static void loupeButton(){
+    String professorIDStr = professorController.view_searchProfessor.getSearchProfessorTextField1().getText();
+    if(isValidProfessorID(professorIDStr)){
+    int professorID = Integer.parseInt(professorIDStr);
+    Professor professor = searchProfessor(professorID);
+    if(professor.getName() != null){
+    view_searchProfessor.getSearchProfessorTextField2().setText(professor.getName());
+    view_searchProfessor.getSearchProfessorTextField3().setText(professor.getLastname());
+    view_searchProfessor.getSearchProfessorTextField4().setText(String.valueOf(professor.getDni()));
+    view_searchProfessor.getSearchProfessorTextField5().setText(professor.getEmail());
+    view_searchProfessor.getSearchProfessorTextField6().setText(professor.getBirth().toString());
+    view_searchProfessor.getSearchProfessorTextField7().setText(professor.getNationality());
+    view_searchProfessor.getSearchProfessorTextField8().setText(professor.getProfessorType());
+    }else{
+    JOptionPane.showMessageDialog(null, "ProfessorID doesn't exist", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
+    }else{
+    JOptionPane.showMessageDialog(null, "ProfessorID is invalid", "Alert", JOptionPane.INFORMATION_MESSAGE);
+    }
     }
 }

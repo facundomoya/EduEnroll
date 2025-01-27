@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="searchProfessorLabel4" alignment="1" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <Component id="searchProfessorLabel5" alignment="1" min="-2" pref="83" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="searchProfessorLabel8" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="searchProfessorLabel3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="searchProfessorLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="searchProfessorLabel2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="searchProfessorLabel6" alignment="0" pref="83" max="32767" attributes="0"/>
+                                  <Component id="searchProfessorLabel7" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="searchProfessorTextField1" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
+                          <Component id="searchProfessorTextField8" alignment="0" max="32767" attributes="0"/>
+                          <Component id="searchProfessorTextField7" alignment="0" max="32767" attributes="0"/>
+                          <Component id="searchProfessorTextField6" alignment="0" max="32767" attributes="0"/>
+                          <Component id="searchProfessorTextField5" alignment="0" max="32767" attributes="0"/>
+                          <Component id="searchProfessorTextField4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="searchProfessorTextField2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="searchProfessorTextField3" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="searchProfessorButton1" min="-2" pref="75" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="searchProfessorButton2" min="-2" pref="75" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchProfessorLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchProfessorTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchProfessorLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchProfessorLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchProfessorLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchProfessorLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchProfessorTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchProfessorLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchProfessorTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <Component id="searchProfessorButton2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="searchProfessorLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Professor ID:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchProfessorTextField1">
+    </Component>
+    <Component class="javax.swing.JButton" name="searchProfessorButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Search"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchProfessorButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchProfessorLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Name:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchProfessorTextField2">
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchProfessorLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lastname:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchProfessorTextField3">
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchProfessorLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DNI:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchProfessorTextField4">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchProfessorTextField4ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchProfessorLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchProfessorTextField5">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchProfessorTextField5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchProfessorLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Date of birth:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchProfessorTextField6">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchProfessorTextField6ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchProfessorLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nationality:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchProfessorTextField7">
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchProfessorLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Type:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchProfessorTextField8">
+    </Component>
+    <Component class="javax.swing.JButton" name="searchProfessorButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Close"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchProfessorButton2ActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>

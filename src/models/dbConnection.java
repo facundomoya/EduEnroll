@@ -793,4 +793,36 @@ public class dbConnection {
         }
         return row;
     }
+    
+    public static Professor searchProfessor(int professorID){
+     Connection con = null;
+     PreparedStatement ps = null;
+     ResultSet rs = null;
+     
+     Professor professor = new Professor(professorID,null,null,null,null,null,null,0);
+     
+     try{
+         con = dbConnection.getConnection();
+         String query = "SELECT p.name, p.lastname, p.dni, p.email, p.nationality, p.birth, p.professorType FROM professor p WHERE professorID = ?";
+         ps = con.prepareStatement(query);
+         ps.setInt(1, professor.getProfessorID());
+         rs = ps.executeQuery();
+         
+         if(rs.next()){        
+         professor.setProfessorType(rs.getString("professorType"));
+         professor.setName(rs.getString("name"));
+         professor.setLastname(rs.getString("lastname"));
+         professor.setBirth(rs.getDate("birth").toLocalDate());
+         professor.setNationality(rs.getString("nationality"));
+         professor.setEmail(rs.getString("email"));
+         professor.setDni(rs.getInt("dni"));
+         }
+         
+         
+    
+     }catch(SQLException e){e.printStackTrace();}
+     
+     return professor;
+    }
+    
 }
