@@ -12,10 +12,10 @@ import static models.dbConnection.editProfessor;
 import static models.dbConnection.searchProfessor;
 import static models.dbConnection.searchProfessorEdit;
 import static models.dbConnection.showProfessor;
-import views.professorViews.deleteProfessorView;
-import views.professorViews.editProfessorView;
-import views.professorViews.professorView;
-import views.professorViews.searchProfessorView;
+import views.deleteProfessorView;
+import views.editProfessorView;
+import views.professorView;
+import views.searchProfessorView;
 
 public class professorController {
     

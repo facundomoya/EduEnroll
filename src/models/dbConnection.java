@@ -419,7 +419,7 @@ public class dbConnection {
         return studentList;
     }
 
-    //Metodos para addUserController
+    //Metodos para addUserController  
     public static boolean checkUser(String user_nameStr) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -823,6 +823,52 @@ public class dbConnection {
      }catch(SQLException e){e.printStackTrace();}
      
      return professor;
+    }
+    
+    //Metodos para changePasswordController
+        public static User getUser(String username){
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultset = null;
+        
+        try {
+            con = dbConnection.getConnection();
+            String query = "SELECT u.user_id, u.user_type FROM user u WHERE s.user_name = username";
+            pstmt = con.prepareStatement(query);
+            resultset = pstmt.executeQuery();
+
+            while (resultset.next()) {
+                User user = new User(
+                        resultset.getInt("user_id"),
+                        username,
+                        null,
+                        resultset.getInt("user_type")
+                );
+                return user;
+            }      
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+        
+    public static void changePassword(User user, String pass){
+     Connection con = null;
+     PreparedStatement pstmt = null;
+
+        try {
+            con = dbConnection.getConnection();
+            String query = "UPDATE user SET password = pass WHERE user_name = ?";
+            pstmt = con.prepareStatement(query);
+
+            pstmt.setString(1, user.getUser_name());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
 }

@@ -5,6 +5,7 @@
 package views;
 
 import controllers.addUserController;
+import controllers.changePasswordController;
 import controllers.menuController;
 import controllers.professorController;
 import controllers.studentController;
@@ -84,6 +85,11 @@ public class menuView extends javax.swing.JFrame {
 
         menuChangePasswordButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuChangePasswordButton.setText("Change password");
+        menuChangePasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuChangePasswordButtonActionPerformed(evt);
+            }
+        });
 
         menuAddUserButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuAddUserButton.setText("Add user");
@@ -172,6 +178,11 @@ public class menuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         professorController.showProfessorView();
     }//GEN-LAST:event_menuProfessorButtonActionPerformed
+
+    private void menuChangePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuChangePasswordButtonActionPerformed
+        // TODO add your handling code here:
+        changePasswordController.showChangePasswordView();
+    }//GEN-LAST:event_menuChangePasswordButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,6 +1,5 @@
 package controllers;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import static models.Person.isValidBirth;
@@ -11,7 +10,7 @@ import static models.dbConnection.addUser;
 import static models.dbConnection.checkDNIandEmailAdministrator;
 import static models.dbConnection.checkDNIandEmailProfessor;
 import static models.dbConnection.checkUser;
-import views.addUserView.addUserView;
+import views.addUserView;
 
 public class addUserController {
     public static addUserView view_addUser = new addUserView();

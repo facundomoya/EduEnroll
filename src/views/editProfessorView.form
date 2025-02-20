@@ -51,7 +51,6 @@
                               <Component id="editProfessorButton" min="-2" pref="75" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="cancelProfessorButton" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Component id="editProfessorTextField5" alignment="0" max="32767" attributes="0"/>
                           <Component id="editProfessorTextField4" alignment="0" max="32767" attributes="0"/>
