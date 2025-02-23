@@ -4,6 +4,8 @@
  */
 package views;
 
+import controllers.changePasswordController;
+
 /**
  *
  * @author facun
@@ -26,15 +28,24 @@ public class changePasswordView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        changePasswordLabel2 = new javax.swing.JLabel();
+        changePasswordButton1 = new javax.swing.JButton();
         changePasswordLabel1 = new javax.swing.JLabel();
         changePasswordTextField1 = new javax.swing.JTextField();
-        changePasswordButton1 = new javax.swing.JButton();
+        changePasswordTextField2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        changePasswordLabel1.setText("New password:");
+        changePasswordLabel2.setText("New password:");
 
         changePasswordButton1.setText("Update");
+        changePasswordButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePasswordButton1ActionPerformed(evt);
+            }
+        });
+
+        changePasswordLabel1.setText("User:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -42,30 +53,44 @@ public class changePasswordView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(changePasswordButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(changePasswordLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(changePasswordTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(changePasswordButton1)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(changePasswordLabel1)
+                            .addComponent(changePasswordLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(changePasswordTextField1)
+                            .addComponent(changePasswordTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
+                        .addGap(0, 40, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(changePasswordLabel1)
                     .addComponent(changePasswordTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changePasswordLabel2)
+                    .addComponent(changePasswordTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(changePasswordButton1)
-                .addGap(39, 39, 39))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void changePasswordButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButton1ActionPerformed
+        // TODO add your handling code here:
+        changePasswordController.changePass();
+    }//GEN-LAST:event_changePasswordButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,7 +132,9 @@ public class changePasswordView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton changePasswordButton1;
     private javax.swing.JLabel changePasswordLabel1;
+    private javax.swing.JLabel changePasswordLabel2;
     private javax.swing.JTextField changePasswordTextField1;
+    private javax.swing.JPasswordField changePasswordTextField2;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JButton getChangePasswordButton1() {
@@ -119,11 +146,19 @@ public class changePasswordView extends javax.swing.JFrame {
     }
 
     public javax.swing.JLabel getChangePasswordLabel1() {
-        return changePasswordLabel1;
+        return changePasswordLabel2;
     }
 
     public void setChangePasswordLabel1(javax.swing.JLabel changePasswordLabel1) {
-        this.changePasswordLabel1 = changePasswordLabel1;
+        this.changePasswordLabel2 = changePasswordLabel1;
+    }
+
+    public javax.swing.JLabel getChangePasswordLabel2() {
+        return changePasswordLabel2;
+    }
+
+    public void setChangePasswordLabel2(javax.swing.JLabel changePasswordLabel2) {
+        this.changePasswordLabel2 = changePasswordLabel2;
     }
 
     public javax.swing.JTextField getChangePasswordTextField1() {
@@ -132,5 +167,9 @@ public class changePasswordView extends javax.swing.JFrame {
 
     public void setChangePasswordTextField1(javax.swing.JTextField changePasswordTextField1) {
         this.changePasswordTextField1 = changePasswordTextField1;
+    }
+
+    public javax.swing.JTextField getChangePasswordTextField2() {
+        return changePasswordTextField2;
     }
 }

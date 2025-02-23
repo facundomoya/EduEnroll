@@ -181,6 +181,7 @@ public class menuView extends javax.swing.JFrame {
 
     private void menuChangePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuChangePasswordButtonActionPerformed
         // TODO add your handling code here:
+        changePasswordController.setUserValue();
         changePasswordController.showChangePasswordView();
     }//GEN-LAST:event_menuChangePasswordButtonActionPerformed
 

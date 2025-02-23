@@ -11,6 +11,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static models.User.checkPassword;
+import static models.User.hashPassword;
 import static models.User.sha256;
 
 public class dbConnection {
@@ -833,8 +834,10 @@ public class dbConnection {
         
         try {
             con = dbConnection.getConnection();
-            String query = "SELECT u.user_id, u.user_type FROM user u WHERE s.user_name = username";
+            String query = "SELECT u.user_id, u.user_type FROM user u WHERE u.user_name = ?";
             pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, username); 
             resultset = pstmt.executeQuery();
 
             while (resultset.next()) {
@@ -856,13 +859,15 @@ public class dbConnection {
     public static void changePassword(User user, String pass){
      Connection con = null;
      PreparedStatement pstmt = null;
+     String hashedPassword = hashPassword(pass);
 
         try {
             con = dbConnection.getConnection();
-            String query = "UPDATE user SET password = pass WHERE user_name = ?";
+            String query = "UPDATE user SET password = ? WHERE user_name = ?";
             pstmt = con.prepareStatement(query);
 
-            pstmt.setString(1, user.getUser_name());
+            pstmt.setString(1, hashedPassword);
+            pstmt.setString(2, user.getUser_name());
 
             pstmt.executeUpdate();
 
